@@ -4,13 +4,13 @@
     align-items: center;
     justify-content: center;
     max-height: 40px;
-    padding: 10px 0px;
     font-size: 20px;
     font-weight: 400;
     color: rgb(255, 255, 255);
     cursor: pointer;
     border-radius: 10px;
     border: none;
+    text-decoration: none;
     background: radial-gradient(circle, rgba(213,97,255,1) 0%, rgba(201,97,242,1) 14%, rgba(211,89,251,1) 61%, rgba(181,73,252,1) 100%);
     transition: background 5s ease;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import './App.css';
-import Button from './components/Button/Button';
+import LinkTag from './components/LinkTag/LinkTag';
 
 
 function App()  {
@@ -57,17 +57,14 @@ function App()  {
         <div className='headerPrice'>Цена</div>
       </div>
       <div className='partsWrapper'>
-        <div className='title'>Процессор Процессор Процессор</div>
-        <Button className='partBtn'><><span>+</span>Выбор</></Button>
+        <div className='title'>Процессор</div>
+        <LinkTag path='/' className='partBtn'><><span>+</span>Выбор</></LinkTag>
       </div>
       <div className='partsWrapper'>
         <div className='title'>Процессор Процессор Процессор</div>
-        <Button className='partBtn'><><span>+</span>Выбор</></Button>
+        <LinkTag path='test' className='partBtn'><><span>+</span>Выбор</></LinkTag>
       </div>
-      <div className='partsWrapper'>
-        <div className='title'>Процессор Процессор Процессор</div>
-        <Button className='partBtn'><><span>+</span>Выбор</></Button>
-      </div>
+      
     </div>
     </>
   );
