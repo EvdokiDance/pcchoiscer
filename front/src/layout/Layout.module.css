@@ -1,0 +1,38 @@
+.wrapper {
+	gap: 40px 30px;
+	display: grid;
+	grid-template-areas:
+		". header ."
+		". main .";
+	grid-template-rows: auto 1fr;
+	grid-template-columns: auto minmax(320px, 1430px) auto;
+	min-height: 100vh;
+}
+
+.header {
+	display: none;
+	grid-area: header;
+}
+
+.main {
+	grid-area: main;
+}
+
+
+@media (max-width: 765px) {
+
+	.header {
+		display: block;
+	}
+
+	.wrapper {
+		grid-template-areas:
+			"header"
+			"main";
+		grid-template-columns: minmax(320px, 1fr);
+	}
+
+	.main {
+		padding: 15px;
+	}
+}

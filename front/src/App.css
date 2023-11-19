@@ -1,0 +1,30 @@
+.parts {
+  font-size: 25px;
+  height: 100vh;
+}
+
+
+.partsWrapper {
+    display: grid;
+    grid-template: 1fr / 200px minmax(200px, 3fr) 1fr 200px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.title {
+  word-wrap: break-word;
+}
+
+.headerPrice {
+  grid-column: 4/5;
+}
+
+.partBtn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.partBtn > span {
+  font-size: 40px;
+  margin-right: 5px;
+}

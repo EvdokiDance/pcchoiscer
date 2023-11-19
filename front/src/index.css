@@ -1,0 +1,20 @@
+:root {
+  box-sizing: border-box;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300;400;500;600;700&family=Roboto&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Bebas Neue',
+    sans-serif;
+    font-size: 20px;
+}
+
+
+
+
+code {
+  font-family: 'Bebas Neue',
+}
