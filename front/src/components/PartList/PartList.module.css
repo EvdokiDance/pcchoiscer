@@ -1,0 +1,10 @@
+.partList {
+    background-color: white;
+  box-shadow: -2px 7px 9px -1px rgba(45, 45, 45, 0.2);
+  border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    row-gap: 20px;
+    padding: 20px;
+}

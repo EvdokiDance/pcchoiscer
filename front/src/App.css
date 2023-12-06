@@ -1,6 +1,9 @@
 .parts {
+  background-color: white;
+  box-shadow: -2px 7px 9px -1px rgba(45, 45, 45, 0.2);
+  border-radius: 20px;
   font-size: 25px;
-  height: 100vh;
+  padding: 20px;
 }
 
 

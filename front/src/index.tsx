@@ -8,22 +8,26 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import TestComp from './TestComp';
+import Input from './components/Input/Input';
+import PageSelection from './pages/PageSelection';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: 
-    <React.StrictMode>
-      <Layout>
-        <App/>
-      </Layout>
-    </React.StrictMode>,
+      <React.StrictMode>
+        <Layout>
+          <App/>
+        </Layout>
+      </React.StrictMode>,
   },
   {
-    path: "/test",
-    element: <TestComp/>,
+    path: "/selection",
+    element: 
+      <Layout>
+        <PageSelection/>
+      </Layout>,
   }
 ]);
 

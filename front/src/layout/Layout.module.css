@@ -10,7 +10,6 @@
 }
 
 .header {
-	display: none;
 	grid-area: header;
 }
 
@@ -21,9 +20,6 @@
 
 @media (max-width: 765px) {
 
-	.header {
-		display: block;
-	}
 
 	.wrapper {
 		grid-template-areas:

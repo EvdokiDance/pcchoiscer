@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300;400;500;600;700&family=Roboto&display=swap');
 
 body {
+  background: rgba(252, 243, 192, 0.4);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Bebas Neue',
     sans-serif;

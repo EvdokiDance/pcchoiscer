@@ -1,0 +1,35 @@
+.part {
+    margin-left: 20px;
+    width: 100%;
+    display: grid;
+    grid-template: min-content 1fr / 1fr;
+    height: min-content;
+    margin-bottom: 50px;
+}
+
+.partTable {
+    display: grid;
+    grid-template: 1fr / 1fr 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+
+
+.partName {
+    grid-column: 1/3;
+}
+.partPrice {
+    grid-column: 3/4;
+}
+
+.partLink {
+    grid-column: 4/5;
+}
+
+.partImg {
+    grid-column: 1/2;
+}
+
+.features {
+    grid-column: 2/3;
+}
