@@ -1,0 +1,15 @@
+.paginator {
+   display: flex;
+   justify-content: center;
+   margin: 30px 0;
+
+}
+
+
+
+.arrow {
+   max-width: 100px;
+   margin: 0 20px;
+}
+
+

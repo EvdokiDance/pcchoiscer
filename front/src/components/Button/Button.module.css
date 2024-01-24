@@ -1,0 +1,30 @@
+.primary {
+    width: 150px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    background: radial-gradient(circle, rgba(213,97,255,1) 0%, rgba(201,97,242,1) 14%, rgba(211,89,251,1) 61%, rgba(181,73,252,1) 100%);
+    transition: background 5s ease;
+}
+
+.primary:hover {
+    background: rgb(79, 165, 250);
+    background: radial-gradient(circle, rgb(89, 171, 253) 0%, rgb(90, 161, 248) 14%, rgb(83, 166, 249) 61%, rgb(48, 169, 249) 100%);
+}
+
+
+.primary:disabled {
+    background: #dddddd; /* Фон для отключенной кнопки */
+    color: #999999; /* Цвет текста для отключенной кнопки */
+    cursor: not-allowed; /* Изменение вида курсора для отключенной кнопки */
+    /* Другие стили, если необходимо */
+  }

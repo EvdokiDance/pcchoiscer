@@ -1,12 +1,12 @@
+import { ReactNode } from "react"
 
 export type Props = {
     className?: string,
-    part: Part,
-    key: number,
+    part: PartType,
 }
 
 
- type Part = {
+ export type PartType = {
     name: string,
     img: string,
     link: string,

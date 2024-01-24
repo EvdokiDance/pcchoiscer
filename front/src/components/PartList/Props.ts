@@ -1,10 +1,10 @@
 export type Props = {
    className?: string,
-   parts: Part[],
+   parts: PartType[],
 }
 
 
-type Part = {
+export type PartType = {
     name: string,
     img: string,
     link: string,

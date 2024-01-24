@@ -1,0 +1,35 @@
+.pageSelection {
+    display: grid;
+}
+
+.arrowBack {
+    color: black;
+    width: min-content;
+    cursor: pointer;
+}
+
+.input {
+    justify-self: center;
+    align-self: center;
+    margin-top: 50px;
+    padding: 10px;
+    font-size: 30px;
+    width: 700px;
+}
+
+
+.spinner {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+.backward {
+    cursor: pointer;
+    width: max-content;
+}
+
+
+
+

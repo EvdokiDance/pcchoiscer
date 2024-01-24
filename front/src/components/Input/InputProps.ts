@@ -1,3 +1,4 @@
-export type InputProps = {
-    className?: string,
+
+export interface InputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>,HTMLInputElement> {
+    className?: string
 }

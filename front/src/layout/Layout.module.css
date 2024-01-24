@@ -2,7 +2,7 @@
 	gap: 40px 30px;
 	display: grid;
 	grid-template-areas:
-		". header ."
+		"header header header"
 		". main .";
 	grid-template-rows: auto 1fr;
 	grid-template-columns: auto minmax(320px, 1430px) auto;
@@ -25,7 +25,7 @@
 		grid-template-areas:
 			"header"
 			"main";
-		grid-template-columns: minmax(320px, 1fr);
+		grid-template-columns: minmax(auto, 1fr);
 	}
 
 	.main {

@@ -1,0 +1,57 @@
+.parts {
+    background-color: white;
+    box-shadow: -2px 7px 9px -1px rgba(45, 45, 45, 0.2);
+    border-radius: 20px;
+    font-size: 25px;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+  
+  
+  .partsWrapper {
+      display: grid;
+      grid-template: 1fr / 200px 100px 1fr repeat(3, 200px);
+      margin-bottom: 12px;
+      border-bottom: 1px solid #dbdbdb;
+     align-items: center;
+  }
+
+  .selectionWrapper {
+    grid-column: 1/-1;
+    display: grid;
+    row-gap: 20px;
+  }
+
+  .selectionWrapper:last-child {
+    margin-bottom: 50px;
+  }
+
+  .selectionHrdw {
+  
+    display: grid;
+    grid-template: 1fr / 200px 100px 1fr repeat(3, 200px);
+    grid-template-areas: 'title image name price buy undo';
+  }
+  
+  .title {
+    word-wrap: break-word;
+  }
+  
+
+
+
+  .headerPrice {
+    grid-column: 4/5;
+  }
+
+  .restart {
+    grid-column: 6/7;
+    justify-self: end;
+    margin-right: 42px;
+  }
+  
+  
+  .partBtn > span {
+    font-size: 40px;
+    margin-right: 5px;
+  }
