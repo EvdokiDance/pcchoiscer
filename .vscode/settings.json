@@ -1,9 +1,0 @@
-{
-    "explorer.compactFolders": true,
-    "explorer.confirmDragAndDrop": true,
-    "explorer.enableDragAndDrop": true,
-    "explorer.sortOrder": "default",
-    "files.enableTrash": true,
-    "workbench.tree.expandMode": "singleClick",
-    "editor.peekWidgetDefaultFocus": "tree"
-}

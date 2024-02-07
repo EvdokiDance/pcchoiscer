@@ -2,7 +2,7 @@ import  {useState, useEffect, useCallback, useMemo,memo} from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { PartList, Spinner, Pagination} from '../../components';
+
 
 import './PageSelection.css'
 
@@ -16,8 +16,11 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 
 import {PartType as Part} from '../../components/Part/Props'
-import Filter from '../../components/Filter/Filter';
+
 import { useFetch } from '../../hooks/useFetch';
+
+import {PartList, Spinner, Pagination, Filter} from '../../components';
+
 
 
 

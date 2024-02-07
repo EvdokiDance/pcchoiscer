@@ -5,8 +5,8 @@ import PartList from "./PartList/PartList";
 import Spinner from "./Spinner/Spinner";
 import Button from "./Button/Button";
 import Pagination from "./Pagination/Pagination";
+import Filter from "./Filter/Filter";
 
-
-export {Input, LinkTag, PartItem, PartList, Spinner, Button, Pagination};
+export { Pagination, Input,  LinkTag, Button, Spinner, PartItem, PartList, Filter} 
 
 

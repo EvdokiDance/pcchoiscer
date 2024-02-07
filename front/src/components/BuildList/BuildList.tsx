@@ -1,12 +1,14 @@
 
 
 
-import { Button, LinkTag } from '..';
+
 import { memo, useState } from 'react';
 import styles from './BuildList.module.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import { useUIDSeed } from 'react-uid';
+import Button from '../Button/Button';
+import LinkTag from '../LinkTag/LinkTag';
 
 const hardwares = [['processors', 'Процессор'], ['coolers', 'Кулер'], ['moutherboards', 'Материнская плата'], ['ram', 'Оперативная память'], ['ssd', 'SSD'], ['hdd', 'HDD'], ['videocards', 'Видеокарта'], ['cases', 'Корпус'], ['power', 'Блок питания']];
 
