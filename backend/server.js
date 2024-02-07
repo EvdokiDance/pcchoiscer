@@ -20,35 +20,7 @@ app.listen(port, () => {
     console.log('server: ', req.params.hardware)
     res.send(hardwares[req.params.hardware]);
   });
-  // app.get('/api/processors', (req, res) => {
-  //   res.send(processors);
-  // });
-  // app.get('/api/cases', (req, res) => {
-  //   res.send(cases);
-  // });
-  // app.get('/api/coolers', (req, res) => {
-  //   res.send(coolers);
-  // });
-  // app.get('/api/hdd', (req, res) => {
-  //   res.send(hdd);
-  // });
-  // app.get('/api/moutherboards', (req, res) => {
-  //   res.send(moutherboards);
-  // });
-  // app.get('/api/power', (req, res) => {
-  //   res.send(power);
-  // });
-  // app.get('/api/ram', (req, res) => {
-  //   res.send(ram);
-  // });
-  // app.get('/api/ssd', (req, res) => {
-  //   res.send(ssd);
-  // });
 
-// app.get('http://localhost:5000/api', (req, res) => {
-//     console.log(1);
-//     res.send(videocards);
-// });
 
 
 app.use((req, res) => {

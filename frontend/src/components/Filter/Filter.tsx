@@ -8,11 +8,15 @@ import { PartType } from '../Part/Props';
 import Input from '../Input/Input';
 import { Props } from './FilterProps';
 import { useDebounce } from '@uidotdev/usehooks';
+import Select from '../RangeInputGroup/RangeInputGroup';
+import RangeInputGroup from '../RangeInputGroup/RangeInputGroup';
 
 
 const Filter = memo(({setFiltredParts, setPartsPerPage, setPage, parts} : Props) => {
 
   const [searchItem, setSearchItem] = useState('');
+  
+  const [option, setOption] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchItem, 700);
 
@@ -40,7 +44,6 @@ const Filter = memo(({setFiltredParts, setPartsPerPage, setPage, parts} : Props)
       setPartsPerPage(filtredItems.slice(0, ROWS_PER_PAGE))
       setPage(1);
       navigate(`/${hardware}/${1}`)
-
     }
 
     search();
@@ -48,13 +51,16 @@ const Filter = memo(({setFiltredParts, setPartsPerPage, setPage, parts} : Props)
   }, [debouncedSearchTerm])
 
 
-
+  const handleChangeOption = (e) => {
+    setOption(e.target.value);
+  }
 
 
 
   return (
     <>
       <Input value={searchItem} onChange={(e) => handleChange(e)} className={styles.input}/>
+      <RangeInputGroup min='0' max={1000} />
     </>
   );
 });

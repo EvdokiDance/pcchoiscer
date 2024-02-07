@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd back && npm start",
-    "client": "cd front && npm start"
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start"
   },
   "author": "",
   "license": "ISC",

@@ -20,6 +20,7 @@ import {PartType as Part} from '../../components/Part/Props'
 import { useFetch } from '../../hooks/useFetch';
 
 import {PartList, Spinner, Pagination, Filter} from '../../components';
+import { usePagination } from '../../hooks/usePagination';
 
 
 
@@ -32,64 +33,22 @@ import {PartList, Spinner, Pagination, Filter} from '../../components';
     const {hardware = '', id = '1'}  = useParams();
     
     
-   
-    
     const {data: parts, isPending, error} = useFetch(hardware);
   
     const navigate = useNavigate();
-    const ROWS_PER_PAGE = 25;
+
   
     
-    const [partsPerPage, setPartsPerPage] = useState<Part[]>([]);
-    const [page, setPage] = useState(Number(id));
     const [filtredParts, setFiltredParts] = useState<Part[]>([]);
 
 
+    const partItems = filtredParts.length ? filtredParts : parts;
 
 
-
-
-    const getTotalPageCount = (rowCount: number): number => {
-    return Math.ceil(rowCount / ROWS_PER_PAGE)
-    };
-    
-    const totalPageCount = getTotalPageCount(filtredParts.length ? filtredParts.length : parts.length);
-
-    const handleNextPageClick = () => {
-      const current = page;
-      const next = page + 1;
-
-      const items = filtredParts.length ?  filtredParts : parts;
-
-      setPartsPerPage(items.slice(current*ROWS_PER_PAGE, next*ROWS_PER_PAGE))
-      setPage(next <= totalPageCount ? next : current);
-
-    };
-    
-    
-    const handlePrevPageClick = () => {
-      const current = page;
-      const prev = current - 1;
-
-      
-      const items = filtredParts.length ?  filtredParts : parts;
-      
-      setPage(prev > 0 ? prev : current);
-      setPartsPerPage(items.slice((current-2)*ROWS_PER_PAGE, (current-1)*ROWS_PER_PAGE))
-    }
-
-
-    useEffect(() => {
-      console.log('ЗАШЛО');
-      
-      parts && setPartsPerPage(parts.slice(0, ROWS_PER_PAGE))
-    }, [parts])
+    const {handleNextPageClick, handlePrevPageClick, page, partsPerPage, setPage, totalPageCount, setPartsPerPage} = usePagination(partItems)
 
 
   
-    
-      
-
 
   return (
     <div className='pageSelection'>

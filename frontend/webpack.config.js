@@ -11,10 +11,17 @@ module.exports = {
       },
     module: {
       rules: [
-        { test: /\.css$/, use: 'css-loader' },
+        {
+          test: /\.css$/i,
+          loader: "css-loader",
+          options: {
+            modules: true,
+          },
+        },
         { test: /\.ts$/, use: 'ts-loader' },
         { test: /\.html$/, use: 'html-loader' },
       ]
     },
+    
     mode: 'development'
 }

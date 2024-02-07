@@ -1,7 +1,6 @@
 import {Props} from './Props';
 import cn from 'classnames';
 import styles from './Part.module.css'
-
 import LinkTag from '../LinkTag/LinkTag';
 import Button from '../Button/Button'
 
