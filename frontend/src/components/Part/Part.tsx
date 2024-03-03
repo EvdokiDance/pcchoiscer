@@ -4,10 +4,10 @@ import styles from './Part.module.css'
 import LinkTag from '../LinkTag/LinkTag';
 import Button from '../Button/Button'
 
-import {useContext} from 'react';
-import { BuildContext } from '../../App';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useUID, useUIDSeed } from 'react-uid';
+import { currencyToRub } from '../../helpers/currencyToRub';
+import { BuildType } from '../../pages/PageBuild/PageBuildProps';
 
 export default function Part({className, part} : Props) : JSX.Element {
 
@@ -16,50 +16,119 @@ export default function Part({className, part} : Props) : JSX.Element {
 
   let features = !!part.features ? Object.entries(part.features).map((feature, idx) => (
    <div key={idx}>{feature[0]+' : '+feature[1]}</div>
-  )) : <div>None</div>;
+  )) : <></>;
 
 
 
 
-      let localeBuild = JSON.parse(localStorage.getItem('build') || JSON.stringify(''));
+  const navigate = useNavigate();
+  
+  const {hardware = ''} = useParams();
+  
+  
+ const handleIsDisabled = (build : BuildType[]) => {
+
+      const recur = (buildItem : BuildType, index : number) => {
+
+            if (index === build.length) {
+                  return;
+            }
+
+            if (buildItem.category === 'ssd' && buildItem.components.length === 0) {
+                  return recur(build[index+1], index+1);
+            } else if (buildItem.category === 'ssd' && buildItem.components.length > 0) {
+
+                  build[index].isDisabled = false;
+                  build[index+1].isDisabled =false;
+
+                 return recur(build[index+2], index+2);
+            }
+
+            if (buildItem.category === 'hdd' && buildItem.components.length === 0) {
+
+                  build[index-1].isDisabled = false;
+                  build[index].isDisabled = false;
+
+                  return;
+
+            } else if (buildItem.category === 'hdd' && buildItem.components.length > 0) {
+
+                  build[index-1].isDisabled = false;
+                  build[index].isDisabled = false;
+
+                  return recur(build[index+1], index+1);
+            }
 
 
+
+
+            if (buildItem.components.length === 0) {
+                  
+                build[index].isDisabled = false; 
+            } else {
+
+                  build[index].isDisabled = false;
+                  return recur(build[index+1], index+1);
+            }
+
+      }
+
+      recur(build[0], 0);
+
+
+
+      return build;
+
+ }
+  
+
+  
+  const addBuildComponent = () => {
+
+        
+        let localeBuild : BuildType[] = JSON.parse(localStorage.getItem('build'));
+
+        
       
-      const navigate = useNavigate();
-
-      const {hardware = ''} = useParams();
-
-      
-      
-      
-      
-      
-      const addBuildComponent = () => {
             
-            const newComponent = {...part};
-            console.log(newComponent);
-            
-
-                  for (const key in localeBuild) {
-
-                       if (String(key) === hardware) {
-                              localeBuild[key].push(newComponent);
-                              localStorage.setItem('build', JSON.stringify(localeBuild));
-                              navigate('/build');
-                              return;
-                       }
-                  }  
+        const newComponent = {...part};
 
 
-                  localStorage.setItem('build', JSON.stringify({
-                        ...localeBuild,
-                        [hardware]:[{...newComponent}]
-                  }))
 
+
+                  if (hardware ===  'processors' || hardware === 'moutherboards' || hardware === 'power' || hardware === 'cases') {
+                           
+                           let newLocaleBuild = localeBuild.map((buildItem, i) => {
+                                    if (buildItem.category === hardware) {
+                                          buildItem.components = [{...newComponent}];
+                                          buildItem.isHidden = true;
+                                    }
+                                    return buildItem;
+                             })
+
+
+                             newLocaleBuild = handleIsDisabled(newLocaleBuild);
+                             
+
+
+                             localStorage.setItem('build', JSON.stringify(newLocaleBuild))
+
+                  } else {
+                        let newLocaleBuild = localeBuild.map((buildItem, index) => {
+                              if (buildItem.category === hardware) {
+                                    buildItem.components.push(newComponent);
+                              }
+                              return buildItem;
+                       })
+
+                             newLocaleBuild = handleIsDisabled(newLocaleBuild);
+                       localStorage.setItem('build', JSON.stringify(newLocaleBuild))
+
+
+                  }
+                  
                   navigate('/build');
-
                   return;  
-            
 
       }
 
@@ -75,11 +144,9 @@ export default function Part({className, part} : Props) : JSX.Element {
                            <div className={styles.partFeatures}>{features}</div>
                      </section>
                      <section  className={styles.right}>
-                        <div className={styles.partPrice}>{part.price}</div>
-                        <div className={styles.partNav}>
-                              <Button onClick={addBuildComponent} className={styles.btnAdd}>Добавить</Button>
-                              <LinkTag path={part.link} type='yandex'/>  
-                        </div>
+                        <div className={styles.partPrice}>{currencyToRub(part.price)}</div>
+                        <Button onClick={addBuildComponent} className={styles.btnAdd}>Добавить</Button>
+                        <LinkTag path={part.link} type='yandex'/>  
                      </section>
                 </section>
             </article>

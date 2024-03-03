@@ -18,9 +18,12 @@ export default function LinkTag({children, path, className, hardware, type} : Pr
   
 
   const inlineStyle = type === 'yandex' ? {backgroundImage: `url(${background})`, backgroundRepeat:"no-repeat", backgroundSize:"contain", height: 50, width: 50, borderRadius: '50%'} : {}
+  const target = type === 'yandex' ? "_blank" : '';
 
+
+  
 
   return (
-    <Link  to={path} style={inlineStyle} className={cn(className, styles.primary)} state={hardware}>{children}</Link>
+    <Link  to={path} target={target} style={inlineStyle} className={cn(className, styles.primary)} state={hardware}>{children}</Link>
   )
 }

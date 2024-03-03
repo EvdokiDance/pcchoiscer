@@ -1,8 +1,8 @@
 .input {
+    margin-left: 100px;
     justify-self: center;
     align-self: center;
-    margin-top: 50px;
     padding: 10px;
     font-size: 30px;
-    width: 700px;
+    width: 30vw;
 }

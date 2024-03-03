@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Pagination.module.css';
 import cn from 'classnames';
 import { PaginationProps } from './PaginationProps';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 
 
@@ -11,7 +11,7 @@ import Button from '../Button/Button';
 
 export default function Pagination({ nav, disable, onNextPageClick, onPrevPageClick, className } : PaginationProps) {
 
- 
+
 
   
 

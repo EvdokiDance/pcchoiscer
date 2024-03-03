@@ -14,7 +14,7 @@ import cn from 'classnames';
 
   return (
     <Layout className={cn({
-      'home': pathname === '/'
+      'nav': true
     })}>
       <Outlet/>
      </Layout>

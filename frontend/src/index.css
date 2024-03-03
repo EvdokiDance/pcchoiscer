@@ -1,15 +1,21 @@
 :root {
   box-sizing: border-box;
+  --main-white: white;
+
+                          
+  --nav-color: #242424;
+  --main-color: #181818;
+  --border-color: #464545;
 }
 
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-  background: rgba(252, 243, 192, 0.4);
+  color: var(--main-white);
   margin: 0;
   font-family: 'Rubik', sans-serif;
-    font-size: 20px;
+  font-size: 20px;
 }
 
 

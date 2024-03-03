@@ -17,6 +17,11 @@ module.exports = {
           options: {
             modules: true,
           },
+          
+        },
+        {
+          test: /\.(png|jp(e*)g|svg|gif)$/,
+          type: "asset/resource"
         },
         { test: /\.ts$/, use: 'ts-loader' },
         { test: /\.html$/, use: 'html-loader' },

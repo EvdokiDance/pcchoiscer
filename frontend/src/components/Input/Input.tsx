@@ -11,3 +11,5 @@ export default function Input({className, ...props}: InputProps) {
     <input {...props} className={cn(className, 'input')}/>
   )
 }
+
+

@@ -2,9 +2,8 @@
 import { PartType } from '../Part/Props';
 
 
-export type Props = {
-    setFiltredParts: (parts: PartType[]) => void;
-    setPartsPerPage: (parts: PartType[]) => void;
+export interface Props extends React.DetailedHTMLProps<React.HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     setPage: (page: number) => void;
-    parts: PartType[];
+    setTotalPageCount: (count : number) => void;
+    getTotalPageCount: (length : number) => number; 
 }

@@ -1,0 +1,49 @@
+.pageSelection {
+    display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    row-gap: 20px;
+    grid-template: 1fr / 50px 1fr 1fr 1fr 100px;
+}
+
+
+.partList {
+    border-top: 1px solid #dbdbdb;
+    grid-column: 2/5;
+}
+
+
+.topWrap {
+    display: grid;
+    grid-template: 1fr / auto 1fr 1fr;
+    align-items: center;
+    grid-column: 2/5;
+}
+
+.pagination {
+    grid-column: 2/5;
+}
+
+.arrowBack {
+    color: black;
+    width: min-content;
+    cursor: pointer;
+}
+
+
+
+/* .spinner {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+} */
+
+
+.backward {
+    cursor: pointer;
+    width: max-content;
+}
+
+
+
+

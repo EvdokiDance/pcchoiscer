@@ -2,10 +2,10 @@ import React from 'react'
 import { ColorRing } from 'react-loader-spinner'
 
 
+import { Props } from './Props'
 
 
-
-export default function Spinner({className, ...props}) {
+export default function Spinner({className, ...props} : Props) {
   return (
    <div className={className}>
      <ColorRing

@@ -1,77 +1,117 @@
-
-
-
-
-import { memo, useState } from 'react';
+import { memo, useState, useEffect } from 'react';
 import styles from './BuildList.module.css';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import AddIcon from '@mui/icons-material/Add';
-import { useUIDSeed } from 'react-uid';
+import SaveIcon from '@mui/icons-material/Save';
+
 import Button from '../Button/Button';
-import LinkTag from '../LinkTag/LinkTag';
 
-const hardwares = [['processors', 'Процессор'], ['coolers', 'Кулер'], ['moutherboards', 'Материнская плата'], ['ram', 'Оперативная память'], ['ssd', 'SSD'], ['hdd', 'HDD'], ['videocards', 'Видеокарта'], ['cases', 'Корпус'], ['power', 'Блок питания']];
+import { useNavigate } from 'react-router-dom';
 
-type PartType = {
-  id: string,
-  name: string,
-  img: string,
-  link: string,
-  price?: string,
-  features?: Object,
-}
+import { currencyToRub } from '../../helpers/currencyToRub';
 
-type BuildType = {
-  [key : string] : PartType[]
-}
+import BuildContainerMemo from './BuildContainer/BuildContainer';
+
+import { BuildType } from '../../pages/PageBuild/PageBuildProps';
+import { saveBuild } from '../../api/api';
 
 
 type Props = {
-  dataBuild : BuildType,
+  dataBuild : BuildType[],
+  initialBuild: BuildType[],
   handleDeleteItem: (category : string, index : number) => void;
+  setStorageBuild: (build : BuildType[]) => void;
+}
+
+function BuildList({dataBuild, setStorageBuild, initialBuild, handleDeleteItem} : Props)  {
+
+
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleTotalPrice = (build : BuildType[]) => {
+
+    let initialPrice = 0;
+
+    build.forEach((buildItem) => buildItem.components.forEach(({price}) => initialPrice+=price));
+    
+
+    return initialPrice;
+
+  }
+
+
+
+  const handleSaveBtn = (build : BuildType[]) => {
+
+
+    const isComponents = build.filter(buildItem => buildItem.components.length > 0);
+
+    let size = isComponents.length;
+
+    let storageComponents = [];
+
+    isComponents.map((component) => component.category === 'ssd' || component.category === 'hdd' ? storageComponents.push(component) : component)
+
+      if (storageComponents.length === 2) {
+        size--;
+      }
+
+    if (size >= 8) {
+      setIsDisabled(false);
+      return;
+    }
+
+    setIsDisabled(true)
+    
+  }
+
+
+  useEffect(() => {
+    handleSaveBtn(dataBuild);
+    
+    const totalPrice = handleTotalPrice(dataBuild);
+
+   
+   setTotalPrice(totalPrice)
+    
+    
+  }, [dataBuild])
+
+
+  const handleSaveBuild = async () => {
+
+   await saveBuild(dataBuild, totalPrice);
+
+   localStorage.setItem('build', JSON.stringify(initialBuild));
+   setStorageBuild(initialBuild);
+  }
+
+
+  const navigate = useNavigate();
+  
+  return (
+    <>  
+      {dataBuild.map((buildItem, index) => {
+        return (
+        
+          <article key={index} className={styles.partsWrapper}>
+           <BuildContainerMemo handleDeleteItem={handleDeleteItem} className={styles.selectionWrapper} buildItem={buildItem}/>
+            {!buildItem.isHidden && 
+            <>
+             <h4 className={styles.title}>{buildItem.name}</h4> 
+              <Button disabled={buildItem.isDisabled } onClick={() => navigate(`/${buildItem.category}/1`)} className={styles.partBtn}><><AddIcon sx={{fontSize: 30}}/>Выбор</></Button>
+            </>}
+          </article>
+        )
+      })}
+      <div className={styles.bottomWrapper}><Button disabled={isDisabled} className={styles.btnSave} onClick={() => handleSaveBuild()}>Сохранить <SaveIcon sx={{fontSize: 30}}/></Button><span className={styles.totalPrice}>ВСЕГО: {currencyToRub(totalPrice)}</span></div>
+    </>
+  );
 }
 
 
-const memoBuildList = memo(function BuildList({dataBuild, handleDeleteItem} : Props)  {
-  
-  let currentPrice = 0;
-  let totalPrice = '';
+const memoBuildList = memo(BuildList)
 
-
-
-  return (
-    <>  
-      {hardwares.map(([category, title] : any) => (
-        <article key={category} className={styles.partsWrapper}>
-          <section className={styles.selectionWrapper} >
-            { !!dataBuild[category as keyof BuildType] && dataBuild[category as keyof BuildType].length > 0  ? dataBuild[category as keyof BuildType].map((hardware, index) => {
-              
-              currentPrice += Number(hardware.price?.split('₽')[0].replace(/\s/g,''));
-         
-               totalPrice = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0, }).format(
-                currentPrice,
-              ) 
-
-              return (
-                <div key={index} className={styles.selectionHrdw}>
-                  <div>{title}</div>
-                  <img src={`${hardware.img}`} alt='' height={50} width={50}/>
-                  <div>{hardware.name}</div>
-                  <div>{hardware.price}</div>
-                  <LinkTag path={hardware.link}><ShoppingCartIcon  sx={{fontSize: 22, marginRight: 1}}/> Купить</LinkTag>
-                  <Button onClick={() => handleDeleteItem(category,index)} className={styles.btnDelete}>X</Button>  
-                </div>
-              )
-            }) : <></>
-          }
-          </section>
-          <h4 className={styles.title}>{title}</h4>
-          <LinkTag path={`/${category}/1`} hardware={category} className={styles.partBtn}><><AddIcon sx={{fontSize: 30}}/>Выбор</></LinkTag>
-        </article>
-      ))}
-      <div className={styles.bottomWrapper}><Button className={styles.btnSave}>Сохранить сборку</Button><span className={styles.totalPrice}>ВСЕГО: {totalPrice}</span></div>
-    </>
-  );
-})
-
-export default memoBuildList;
+export default memoBuildList;;

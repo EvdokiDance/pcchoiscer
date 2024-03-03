@@ -1,13 +1,13 @@
+import { PartType } from "../Part/Props"
+
+
+
+
+
 export type Props = {
    className?: string,
-   parts: PartType[],
+   parts?: PartType[],
+   isPending?: boolean,
 }
 
 
-export type PartType = {
-    name: string,
-    img: string,
-    link: string,
-    price?: string,
-    features?: Object,
-}

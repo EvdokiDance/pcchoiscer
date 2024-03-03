@@ -1,69 +1,118 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState, memo, useMemo } from 'react'
 
 import styles from './Filter.module.css'
-import { useNavigate, useParams } from 'react-router-dom';
-
-import { PartType } from '../Part/Props';
 
 import Input from '../Input/Input';
+
+import { RangeInputGroup } from '../RangeInputGroup/RangeInputGroup';
+import { changeCurrentMax, changeCurrentMin, changeMax, changeMin } from '../../store/reducers/rangeInputReducer';
+import {useAppDispatch, useAppSelector} from '../../hooks/useRedux';
+import { setFiltredParts, setPartsPerPage } from '../../store/reducers/partsReducer';
+import { PartType } from '../Part/Props';
+import { useDebounce } from '../../hooks/useDebunce';
 import { Props } from './FilterProps';
-import { useDebounce } from '@uidotdev/usehooks';
-import Select from '../RangeInputGroup/RangeInputGroup';
-import RangeInputGroup from '../RangeInputGroup/RangeInputGroup';
 
 
-const Filter = memo(({setFiltredParts, setPartsPerPage, setPage, parts} : Props) => {
 
-  const [searchItem, setSearchItem] = useState('');
-  
-  const [option, setOption] = useState('');
+const Filter = ({setPage, setTotalPageCount, getTotalPageCount} : Props) => {
 
-  const debouncedSearchTerm = useDebounce(searchItem, 700);
+  const dispatch = useAppDispatch();
 
-  const {hardware = ''}  = useParams();
-  
-  const ROWS_PER_PAGE = 25; 
+  const storeParts = useAppSelector((state) => state.partsData.parts);
+  const filtredParts = useAppSelector((state) => state.partsData.filtredParts);
+  const rangeInputData = useAppSelector((state) => state.rangeInputData);
 
-  const navigate = useNavigate();
+
+  const [searchItem, setSearchItem] = useState("");
+  let debouncedSearchTerm = useDebounce(searchItem, 700);
+
+
+
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchItem(e.target.value);
-    }
-
-  const filterParts = (inputValue : string) => {
-    return inputValue === '' ? parts : parts.filter((part) => part.name.toLowerCase().includes(inputValue.toLowerCase()))
-  } 
-
-
-  useEffect( () => {
-
-    const search = () => {
-      let filtredItems = filterParts(debouncedSearchTerm);
-      setFiltredParts(filtredItems);
-      setPartsPerPage(filtredItems.slice(0, ROWS_PER_PAGE))
-      setPage(1);
-      navigate(`/${hardware}/${1}`)
-    }
-
-    search();
-
-  }, [debouncedSearchTerm])
-
-
-  const handleChangeOption = (e) => {
-    setOption(e.target.value);
+    setSearchItem(e.target.value);
+  }
+  
+  const filterParts = (parts: PartType[]) => {
+  
+    return debouncedSearchTerm === '' ? parts : parts.filter((part) => part.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase().trim()))
   }
 
 
 
+  // useEffect(() => {
+
+  //   if (rangeInputData.currentMin === '' && rangeInputData.currentMax === '') {
+  //     console.log('FSASFSFFS');
+      
+  //     const max = storeParts.length > 0 ? Math.max(...storeParts.map((part) => part.price)) : 0;
+  //     const min = storeParts.length > 0 ? Math.min(...storeParts.map((part) => part.price)) : 0;
+    
+  
+  //     // dispatch(changeMax(max))
+  //     // dispatch(changeMin(min))
+  //     dispatch(changeCurrentMin(''))
+  //     dispatch(changeCurrentMax(''))
+  //     setFiltredParts(storeParts)
+  //   } 
+
+    
+  // }, [rangeInputData, storeParts])
+
+
+
+  useEffect(() => {
+
+    
+      const max = storeParts.length > 0 ? Math.max(...storeParts.map((part) => part.price)) : 0;
+      const min = storeParts.length > 0 ? Math.min(...storeParts.map((part) => part.price)) : 0;
+  
+      dispatch(changeMax(max))
+      dispatch(changeMin(min))
+      dispatch(changeCurrentMin(''))
+      dispatch(changeCurrentMax(''))
+      setFiltredParts(storeParts)
+    
+
+    
+  }, [storeParts])
+
+  
+
+  useEffect( () => {    
+    
+
+    
+    
+    let searchParts = filterParts(storeParts);
+
+
+
+    const max = searchParts.length > 0 ? Math.max(...searchParts.map((part) => part.price)) : 0;
+    const min = searchParts.length > 0 ? Math.min(...searchParts.map((part) => part.price)) : 0;
+
+
+    console.log(max, min);
+    
+    dispatch(changeMax(max))
+    dispatch(changeMin(min))
+   
+
+
+
+    dispatch(setFiltredParts(searchParts));
+
+    
+   }, [debouncedSearchTerm])
+
   return (
     <>
       <Input value={searchItem} onChange={(e) => handleChange(e)} className={styles.input}/>
-      <RangeInputGroup min='0' max={1000} />
+      <RangeInputGroup searchTerm={debouncedSearchTerm} filterParts={filterParts} parts={storeParts}/>
     </>
   );
-});
+};
 
 
 export default Filter;

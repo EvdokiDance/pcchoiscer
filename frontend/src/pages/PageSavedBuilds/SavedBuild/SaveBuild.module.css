@@ -1,0 +1,17 @@
+
+.buildItem {
+    font-size: 13px;
+}
+
+.preview {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info {
+    color: rgb(196, 195, 195);
+    margin-top: 3px;
+    display: flex;
+    justify-content: space-between;  
+}

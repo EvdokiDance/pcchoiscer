@@ -10,6 +10,6 @@ export type Props = {
     name: string,
     img: string,
     link: string,
-    price?: string,
+    price?: number,
     features?: Object,
 }

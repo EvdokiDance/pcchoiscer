@@ -1,12 +1,18 @@
-.header {
+.headerWrapp {
     display: grid;
-    grid-template-columns: auto minmax(320px, 1430px) auto;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);   
-    width: 100%;
+    grid-template: auto / auto 1fr auto;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
 }
 
-.body {
-    grid-column: 2/3;
-    padding: 20px;
+.header {
+    grid-column: 1/2;
 }
+
+
+.profile {
+    grid-column: 3/4;
+}
+
+
+

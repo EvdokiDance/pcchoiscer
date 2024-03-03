@@ -1,0 +1,29 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+
+model Build {
+  id Int @id @default(autoincrement())
+  date DateTime 
+  fullPrice Int
+  build Json
+}
+
+// model PartBuild {
+//     id Int @id @default(autoincrement())
+//     category String
+//     components Json
+//     isDisabled Boolean
+//     isHidden Boolean
+//     build Build @relation(fields: [buildId], references: [id])
+//     buildId Int @unique
+// }
+
+

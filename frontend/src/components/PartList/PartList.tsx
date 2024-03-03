@@ -7,16 +7,19 @@ import styles from './PartList.module.css'
 import PartItem from '../Part/Part';
 import ErrorIcon from '@mui/icons-material/Error';
 
-import { useParams } from 'react-router-dom';
+
+import { useAppSelector } from '../../hooks/useRedux';
 
 
-export default function PartList({className, parts} : Props) : JSX.Element {
+export default function PartList({className, ...props} : Props) : JSX.Element {
 
 
+  const partsPerPage = useAppSelector((state) => state.partsData.partsPerPage)
 
-  console.log('PartList', parts);
   
-    
+
+
+
 
 
   const seed = useUIDSeed();
@@ -27,7 +30,7 @@ export default function PartList({className, parts} : Props) : JSX.Element {
 
 
 
-  const partsList = parts.length > 0 ? parts.map((part, index) => <PartItem key={seed(part)} part={part}/>) 
+  const partsList = partsPerPage.length > 0 ? partsPerPage.map((part, index) => <PartItem className={styles.partItem} key={seed(part)} part={part}/>) 
     : (
     <div className={styles.empty}>
       Не найдено

@@ -1,34 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { PartType } from "../components/Part/Props";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "./useRedux";
+import { setPartsPerPage } from "../store/reducers/partsReducer";
 
-export const usePagination = (parts : PartType[]) => {
+
+ export const usePagination = () => {
 
 
-    console.log('usePagination', parts);
-    
 
+
+  const dispatch = useAppDispatch();
+
+  const filtredParts = useAppSelector((state) => state.partsData.filtredParts);
+
+
+  
     const ROWS_PER_PAGE = 25;
 
-    const {hardware = '', id = '1'}  = useParams();
+    const {hardware = '', id = '1' }  = useParams();
+    const navigate = useNavigate();
+
+    // const partsItem = filtredParts.length > 0 ? filtredParts : parts;
 
 
-    const [partsPerPage, setPartsPerPage] = useState<PartType[]>([]);
+    // const partsItem = useMemo(() => {
+    //   return filtredParts.length > 0 ? filtredParts : parts;
+    // }, [parts, filtredParts])
+
+  // console.log(id);
+
+ 
+  
+
+
+    // const partsItem = useMemo(() => filtredParts, [filtredParts])
+
+
+    // const [partsPerPage, setPartsPerPage] = useState<PartType[]>([]);
     const [page, setPage] = useState(Number(id));
 
+    const [totalPageCount, setTotalPageCount] = useState(1);
 
     const getTotalPageCount = (rowCount: number): number => {
         return Math.ceil(rowCount / ROWS_PER_PAGE)
         };
 
     
-    const totalPageCount = getTotalPageCount(parts.length);
-
-
     const handleNextPageClick = () => {
         const current = page;
         const next = page + 1;
-        setPartsPerPage(parts.slice(current*ROWS_PER_PAGE, next*ROWS_PER_PAGE))
+        dispatch(setPartsPerPage(filtredParts.slice(current*ROWS_PER_PAGE, next*ROWS_PER_PAGE)))
         setPage(next <= totalPageCount ? next : current);
   
       };
@@ -38,15 +60,16 @@ export const usePagination = (parts : PartType[]) => {
         const current = page;
         const prev = current - 1;
         setPage(prev > 0 ? prev : current);
-        setPartsPerPage(parts.slice((current-2)*ROWS_PER_PAGE, (current-1)*ROWS_PER_PAGE))
+        dispatch(setPartsPerPage(filtredParts.slice((current-2)*ROWS_PER_PAGE, (current-1)*ROWS_PER_PAGE)))
       }
 
+    // useEffect(() => {
 
+    //   navigate(`/${hardware}/${page}`);
+    // }, [page])
 
-    useEffect(() => {
-        setPartsPerPage(parts.slice(0, ROWS_PER_PAGE))
-        setPage(1);
-    }, [parts])
+    
         
-    return {page, totalPageCount, partsPerPage, handleNextPageClick, handlePrevPageClick, setPage, setPartsPerPage}
+    return {page, totalPageCount, handleNextPageClick, handlePrevPageClick, setPage, setTotalPageCount, getTotalPageCount}
 }
+

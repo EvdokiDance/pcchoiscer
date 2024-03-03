@@ -9,28 +9,25 @@
   
   .partsWrapper {
       display: grid;
-      grid-template: 1fr / 200px 100px 1fr repeat(3, 200px);
+      grid-template: 1fr / 200px 100px minmax(200px, 1fr) repeat(3, 200px); 
       margin-bottom: 12px;
       border-bottom: 1px solid #dbdbdb;
-     align-items: center;
+      align-items: center;
+      padding: 20px 0;
   }
 
   .selectionWrapper {
     grid-column: 1/-1;
     display: grid;
     row-gap: 20px;
+
   }
 
-  .selectionWrapper:last-child {
+  /* .selectionWrapper:last-child {
     margin-bottom: 50px;
-  }
+  } */
 
-  .selectionHrdw {
-  
-    display: grid;
-    grid-template: 1fr / 200px 100px 1fr repeat(3, 200px);
-    grid-template-areas: 'title image name price buy undo';
-  }
+
   
   .title {
     word-wrap: break-word;
@@ -42,10 +39,11 @@
   }
 
   .btnSave {
-    height: 60px;
-    width: 200px;
+    display: flex;
+   gap: 10px;
+   padding: 0px 15px;
+   width: auto;
   }
-
 
   .headerPrice {
     grid-column: 4/5;
@@ -54,10 +52,8 @@
   .bottomWrapper {
     padding: 15px;
     display: flex;
-    column-gap: 10px;
-    justify-content: space-between;
     align-items: center;
-  
+    column-gap: 20px;
   }
 
   .totalPrice {
