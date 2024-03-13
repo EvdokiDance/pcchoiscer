@@ -1,13 +1,16 @@
 .buildWrapper {
-    margin-top: 20px;
+    margin: 20px 0;
+
+}
+
+.itemList {
     display: grid;
-    gap: 20px;
-    
+    row-gap: 10px;
 }
 
 .buildContain {
+    font-size: 18px;
     display: grid;
     padding: 10px;
     border: 1px solid rgb(119, 119, 119, 0.5);
-    row-gap: 15px;
 }

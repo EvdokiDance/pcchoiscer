@@ -10,10 +10,13 @@ const Layout = ({ children, className }: LayoutProps): JSX.Element => {
   console.log(className);
   
   const location = useLocation();
+
+
+  
   
   return (
     <div className={cn(styles.wrapper, className)}>   
-      {location.pathname !== '/' ? 
+      {location.pathname !== '/' && location.pathname !== "/login" && location.pathname !== '/registration'? 
       <>
         <Nav className={styles.nav} />
         <div className={styles.main}>

@@ -1,4 +1,8 @@
-import { BuildType } from "../pages/PageBuild/PageBuildProps";
+import { BuildType } from './../pages/PageBuild/PageBuildProps';
+
+
+
+
 
 export type TSavedBuild = {
     id: number,

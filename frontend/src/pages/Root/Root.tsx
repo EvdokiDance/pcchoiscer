@@ -17,7 +17,7 @@ import cn from 'classnames';
       'nav': true
     })}>
       <Outlet/>
-     </Layout>
+    </Layout>
     
   )
       }

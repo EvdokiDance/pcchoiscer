@@ -16,19 +16,8 @@ export default function PartList({className, ...props} : Props) : JSX.Element {
 
   const partsPerPage = useAppSelector((state) => state.partsData.partsPerPage)
 
-  
-
-
-
-
 
   const seed = useUIDSeed();
-
-
-
-
-
-
 
   const partsList = partsPerPage.length > 0 ? partsPerPage.map((part, index) => <PartItem className={styles.partItem} key={seed(part)} part={part}/>) 
     : (
@@ -38,7 +27,7 @@ export default function PartList({className, ...props} : Props) : JSX.Element {
     </div>)
 
   return (
-    <div className={cn(className, styles.partList)}>
+    <div {...props} className={cn(className, styles.partList)}>
         {partsList}
     </div>
   )

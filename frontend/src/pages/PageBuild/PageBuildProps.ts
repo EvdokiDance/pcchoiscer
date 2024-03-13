@@ -11,5 +11,4 @@ export type BuildType = {
       'components': PartType[],
       'isDisabled': boolean,
       'isHidden': boolean,
-    
   }

@@ -1,29 +1,28 @@
 .wrapper {
-    
-    background-color: #2d2d34;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 30px;
     display: grid;
-    grid-template: auto 1fr / 1fr 1fr; 
-    justify-self: center;
-    justify-items: center;
-    border: 0.5px solid rgb(168, 167, 167);
+    background-color: var(--nav-color);
+    padding: 20px;
+    border-radius: 15px;
+    border: 0.5px solid rgb(129, 129, 129, 0.5);
 }
 
 .header {
+    justify-self: center;
     margin: 15px 0px;
-    grid-column: 1/3;
 }
 
-.inputWrapper {
-    display: grid;
-    grid-column: 1/3;
-    grid-template: 1fr / 1fr 1fr;
-    gap: 50px;
-}
-
-.label {
-    display: grid;
+.inputsContainer {
+    display: flex;
     gap: 10px;
+   
+}
+
+.inputWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input {
+    max-width: 80px;
 }

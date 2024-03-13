@@ -6,9 +6,9 @@ import { InputProps } from './InputProps';
 
 
 
-export default function Input({className, ...props}: InputProps) {
+export default function Input({className, register,...props}: InputProps) {
   return (
-    <input {...props} className={cn(className, 'input')}/>
+    <input {...props} {...register} className={cn(className, 'input')}/>
   )
 }
 

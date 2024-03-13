@@ -14,15 +14,15 @@ const userAgent = generateRandomUA();
 (async () => {
     console.log("START PARSE");
     const urls = {
-      // 'videocards': 'https://market.yandex.ru/catalog--videokarty/26912670/list?',
-      // 'processors': 'https://market.yandex.ru/catalog--protsessory-cpu/26912730/list?',
-      // 'RAM':'https://market.yandex.ru/catalog--moduli-pamiati/26912790/list?',
-      // 'SSD':'https://market.yandex.ru/catalog--vnutrennie-tverdotelnye-nakopiteli-ssd/26912750/list?',
-      // 'HDD':'https://market.yandex.ru/catalog--vnutrennie-zhestkie-diski/55316/list?',
-      // 'moutherboards':'https://market.yandex.ru/catalog--materinskie-platy/26912770/list?',
+      'videocards': 'https://market.yandex.ru/catalog--videokarty/26912670/list?',
+      'processors': 'https://market.yandex.ru/catalog--protsessory-cpu/26912730/list?',
+      'RAM':'https://market.yandex.ru/catalog--moduli-pamiati/26912790/list?',
+      'SSD':'https://market.yandex.ru/catalog--vnutrennie-tverdotelnye-nakopiteli-ssd/26912750/list?',
+      'HDD':'https://market.yandex.ru/catalog--vnutrennie-zhestkie-diski/55316/list?',
+      'moutherboards':'https://market.yandex.ru/catalog--materinskie-platy/26912770/list?',
       'coolers':'https://market.yandex.ru/catalog--kulery-i-sistemy-okhlazhdeniia-dlia-kompiuterov/26912910/list?',
-      // 'cases':'https://market.yandex.ru/catalog--kompiuternye-korpusa/55319/list?',
-      // 'power_supplies':'https://market.yandex.ru/catalog--bloki-pitaniia-dlia-kompiuterov/26912850/list?',
+      'cases':'https://market.yandex.ru/catalog--kompiuternye-korpusa/55319/list?',
+      'power_supplies':'https://market.yandex.ru/catalog--bloki-pitaniia-dlia-kompiuterov/26912850/list?',
       // 'sound_card':'https://market.yandex.ru/catalog--zvukovye-karty/55317/list?',
     }
 
@@ -69,11 +69,11 @@ const userAgent = generateRandomUA();
 
       let randomTime = 1000 + Math.random() * 2000;
 
-      await new Promise(r => setTimeout(r, randomTime));
+      await new Promise(res => setTimeout(res, randomTime));
         
       await page.goto(url+`page=${pageNumber}`);
 
-        
+      // await new Promise(res => setTimeout(res, 9999999));
     
         await autoScroll(page, 50);
         
@@ -86,6 +86,9 @@ const userAgent = generateRandomUA();
                 components = await page.$$(
                   '[data-autotest-id="product-snippet"]'
                 );
+
+
+                console.log('SIZE_', components.length);
   
       
                 for (const component of components) {
@@ -134,6 +137,9 @@ const userAgent = generateRandomUA();
                     );
                   } catch (error) {}
                   
+
+                  console.log(componentObj);
+
                   if (componentObj['name'] && componentObj['price'] && componentObj['link']) {
                     componentsPerPage.push(componentObj)
                   }
@@ -146,11 +152,12 @@ const userAgent = generateRandomUA();
 
           await (async () => {
             components = await page.$$(
-              '[data-test-id="virtuoso-item-list"] > div'
+              'div[data-test-id="virtuoso-item-list"] > div'
             );
-    
-            console.log('ELSE components.length:', idx, components.length);
 
+
+            console.log('SIZE_', components.length);
+    
             for (const component of components) {
             
     
@@ -174,8 +181,8 @@ const userAgent = generateRandomUA();
               try {
                let price = await page.evaluate(
                   (el) => {
-                   let price = el.querySelector('div[data-zone-name="price"] h3').textContent.split(":")[1];
-                    
+                   let price = el.querySelector('[data-auto="snippet-price-current"]').textContent.split(":")[1];
+                      console.log('price', price);
                      return Number(price?.split('₽')[0].replace(/\s/g,''));
                    
                   },
@@ -189,9 +196,8 @@ const userAgent = generateRandomUA();
               } catch (error) {}
               
               try {
-                componentObj['link'] = await page.evaluate((el) => el.querySelector("._1GfBD a").href
+                componentObj['link'] = await page.evaluate((el) => el.querySelector('._1GfBD a').href
                 , component)
-                console.log('LINK', componentObj['link']);
               } catch (error) {}
     
               try {
@@ -217,8 +223,11 @@ const userAgent = generateRandomUA();
 
               } catch (error) {}
     
+
+
               
               if (componentObj['name'] && componentObj['price'] && componentObj['link']) {
+
                 componentsPerPage.push(componentObj)
               }
 
@@ -262,7 +271,15 @@ const userAgent = generateRandomUA();
 
              const data = await scrapeData(page, {idx, url, componentsPerPage: [], pageNumber: 0})
 
-             createJson(idx, data)
+
+              const uniqueData = data.reduce((acc, elem) => {
+                if (!acc.find((prevElem) => prevElem.name == elem.name || prevElem.link == elem.link)) {
+                    acc.push(elem);
+                }
+                return acc;
+            }, []);
+
+             createJson(idx, uniqueData)
     });
   
     for (const key in urls) {

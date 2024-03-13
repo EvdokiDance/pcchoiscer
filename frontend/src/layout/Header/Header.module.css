@@ -1,8 +1,15 @@
 .headerWrapp {
     display: grid;
-    grid-template: auto / auto 1fr auto;
+    grid-template: auto / auto minmax(50px, 1fr) auto;
     border-bottom: 1px solid var(--border-color);
     align-items: center;
+    padding: 20px;
+}
+
+
+
+.modal {
+    text-decoration: none;
 }
 
 .header {
@@ -10,9 +17,56 @@
 }
 
 
-.profile {
+.logout {
     grid-column: 3/4;
 }
 
+
+.logout {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+}
+
+
+.logout:hover {
+    color: #884bc5;
+}
+
+
+
+.modal {
+    display: none;
+}
+
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modalContainer a{
+    color: white;
+    text-decoration: none;
+}
+
+.modalContainer a:hover {
+    color: #884bc5;
+}
+
+@media screen and (max-width: 1024px) {
+    .headerWrapp {
+        grid-template: auto / auto auto;
+    }
+    .modal {
+        justify-self: end;
+        display: block;
+    }
+    .logout {
+        display: none !important;
+    }
+}
 
 

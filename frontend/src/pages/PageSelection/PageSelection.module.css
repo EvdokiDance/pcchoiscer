@@ -6,17 +6,22 @@
     grid-template: 1fr / 50px 1fr 1fr 1fr 100px;
 }
 
+@media screen and (max-width: 1280px) {
+    .pageSelection {
+    
+        grid-template: none;
+    }
+    
+}
+
 
 .partList {
-    border-top: 1px solid #dbdbdb;
     grid-column: 2/5;
 }
 
 
-.topWrap {
-    display: grid;
-    grid-template: 1fr / auto 1fr 1fr;
-    align-items: center;
+.filter {
+
     grid-column: 2/5;
 }
 

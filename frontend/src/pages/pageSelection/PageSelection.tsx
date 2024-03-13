@@ -1,13 +1,11 @@
-import  {useState, useEffect, useCallback, useMemo,memo} from 'react'
+import  {useEffect} from 'react'
 
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 
 import styles from './PageSelection.module.css'
 
-
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 
 
@@ -15,7 +13,7 @@ import { getData } from '../../api/api';
 
 
 
-import {PartType as Part, PartType} from '../../components/Part/Props'
+import {PartType} from '../../components/Part/Props'
 
 
 
@@ -59,11 +57,6 @@ import { setHeaderName } from '../../store/reducers/headerReducer';
 
     useEffect(() => {
 
-
-      console.log(filtredParts);
-
-        
-
         if (filtredParts.length === 0) {
           setTotalPageCount(1);
         } else {
@@ -82,12 +75,7 @@ import { setHeaderName } from '../../store/reducers/headerReducer';
 
   return (
     <div className={styles.pageSelection}>
-      <div className={styles.topWrap}>
-        <Link className={styles.backward} to='/build'>
-            <KeyboardArrowLeftIcon sx={{fontSize: 65, "&:hover": { color: "purple" }}} />
-        </Link>
-      <Filter setPage={setPage} setTotalPageCount={setTotalPageCount} getTotalPageCount={getTotalPageCount} />
-      </div>
+      <Filter className={styles.filter}/>
       <PartList className={styles.partList} />
       <Pagination
         className={styles.pagination}

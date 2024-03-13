@@ -4,6 +4,7 @@ import styles from './PageHome.module.css';
 import cn from 'classnames'
 
 
+
 function PageHome({className} : any)  {
  
 
@@ -12,7 +13,10 @@ function PageHome({className} : any)  {
       <h1 className={styles.header}>
         Pc Picker. Соберите свой компьютер при помощи ИИ. Сравнивайте и делитесь.
       </h1>
-      <Link className={styles.link} to='/build'>Собрать ПК</Link>
+      <div className={styles.navWrapper}>
+        <Link className={styles.link} to='/login'>Авторизироваться</Link> 
+        <Link className={styles.link} to='/registration'>Зарегистрироваться</Link>
+      </div>
     </div>
   );
 }

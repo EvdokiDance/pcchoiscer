@@ -6,8 +6,10 @@ import {useEffect, useState} from 'react'
 import { TSavedBuild } from '../../api/typesApi';
 import { getBuildById } from '../../api/api';
 import { useParams } from 'react-router-dom';
-import { PartType } from '../../components/Part/Props';
-import BuildContainerMemo from '../../components/BuildList/BuildContainer/BuildContainer';
+
+import dateTransform from '../../helpers/dateTransform';
+import { currencyToRub } from '../../helpers/currencyToRub';
+import BuildContainer from '../../components/BuildList/BuildContainer/BuildContainer';
 
 export default function PageSavedBuild() {
 
@@ -37,11 +39,19 @@ export default function PageSavedBuild() {
 
 
 
+
+
+
+
   return (
     <div className={styles.buildWrapper}>
-      {savedBuild && Object.keys(savedBuild).length > 0 ? savedBuild.build.map((buildItem) => buildItem.components.length > 0 && (
-        <BuildContainerMemo className={styles.buildContain}  buildItem={buildItem}/>
-      )) : <div>Сборок нету</div>}
+      {savedBuild && Object.keys(savedBuild).length > 0 ? (<>
+        <div>Дата создания: {dateTransform(savedBuild.date)}</div>
+        <div>Полная цена: {currencyToRub(savedBuild.fullPrice)}</div>
+        <ul className={styles.itemList}>
+          {savedBuild.build.map((buildItem, index) => <BuildContainer key={index} className={styles.buildContain} buildItem={buildItem}/>)}
+        </ul>
+      </>) : <div>Сборок нету</div>}
     </div>
   )
 }

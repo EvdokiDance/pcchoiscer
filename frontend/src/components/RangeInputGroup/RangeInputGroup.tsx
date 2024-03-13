@@ -127,15 +127,15 @@ import { useDebounce } from '../../hooks/useDebunce';
   return (
     <div {...props} className={cn(className, styles.wrapper)}>
       <h3 className={styles.header}>ЦЕНА</h3>
-      <article className={styles.inputWrapper}>
-        <label className={styles.label}>
+      <article className={styles.inputsContainer}>
+        <div className={styles.inputWrap}>
           ОТ
-          <RangeInput minmax={rangeInputData.currentMin} placeholder={`от ${rangeInputData.min} `} handleOnChange={handleOnChangeMin} />
-        </label>
-        <label className={styles.label}>
+          <RangeInput className={styles.input} minmax={rangeInputData.currentMin} placeholder={`от ${rangeInputData.min} `} handleOnChange={handleOnChangeMin} />
+        </div>
+        <div className={styles.inputWrap}>
           ДО
-          <RangeInput minmax={rangeInputData.currentMax} placeholder={`до ${rangeInputData.max} `} handleOnChange={handleOnChangeMax}/>
-        </label>
+          <RangeInput className={styles.input} minmax={rangeInputData.currentMax} placeholder={`до ${rangeInputData.max} `} handleOnChange={handleOnChangeMax}/>
+        </div>
       </article>
     </div>
   )

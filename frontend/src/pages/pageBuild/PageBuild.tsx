@@ -82,15 +82,6 @@ export const initialBuild : BuildType[] = [
 
 function PageBuild()  {
 
-
-
- 
-
-  
-  
-   
-
-
   const localeBuild = useLocalStorage('build', initialBuild)
 
   
@@ -176,7 +167,6 @@ function PageBuild()  {
 
 
   return (
-    <>  
     <article className={styles.parts}>
       <article className={styles.partsWrapper}>
         <h4 className={styles.headerComponent}>Компонент</h4>
@@ -186,7 +176,6 @@ function PageBuild()  {
       </article>
      <BuildList dataBuild={storageBuild} setStorageBuild={setStorageBuild} initialBuild={initialBuild} handleDeleteItem={handleDeleteItem}/>
     </article>
-    </>
   );
 }
 

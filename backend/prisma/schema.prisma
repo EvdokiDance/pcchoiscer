@@ -9,11 +9,30 @@ datasource db {
 }
 
 
+model User {
+ id Int @id @default(autoincrement())
+ email String @unique
+ password String
+ build Build[]
+ token Token?
+}
+
+
+model Token {
+  id Int @id @default(autoincrement())
+  refreshToken String @unique
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+}
+
+
 model Build {
   id Int @id @default(autoincrement())
   date DateTime 
   fullPrice Int
   build Json
+  user User @relation(fields: [userId], references: [id])
+  userId Int
 }
 
 // model PartBuild {

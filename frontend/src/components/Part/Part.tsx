@@ -89,12 +89,8 @@ export default function Part({className, part} : Props) : JSX.Element {
         let localeBuild : BuildType[] = JSON.parse(localStorage.getItem('build'));
 
         
-      
-            
+
         const newComponent = {...part};
-
-
-
 
                   if (hardware ===  'processors' || hardware === 'moutherboards' || hardware === 'power' || hardware === 'cases') {
                            
@@ -146,7 +142,7 @@ export default function Part({className, part} : Props) : JSX.Element {
                      <section  className={styles.right}>
                         <div className={styles.partPrice}>{currencyToRub(part.price)}</div>
                         <Button onClick={addBuildComponent} className={styles.btnAdd}>Добавить</Button>
-                        <LinkTag path={part.link} type='yandex'/>  
+                        <LinkTag to={part.link} target='_blank' type='yandex'/>  
                      </section>
                 </section>
             </article>

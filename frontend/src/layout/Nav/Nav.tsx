@@ -15,8 +15,9 @@ export const Nav = ({ className, ...props }: NavProps): JSX.Element => {
         <h1 className={styles.title}>Pc Picker</h1>
       </header>
       <nav className={styles.navContainer}>
-        <NavItem to={'build'}><HardwareIcon sx={{fontSize: 25, color: `#6323a5`}}/>Сборка</NavItem>
-        <NavItem to={'saved-builds'}><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Мои сборки</NavItem>
+        <NavItem className={styles.navItem} to={'build'}><HardwareIcon sx={{fontSize: 25, color: `#6323a5`}}/>Сборка</NavItem>
+        <NavItem className={styles.navItem} to={'saved-builds'}><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Мои сборки</NavItem>
+        <NavItem className={styles.navItem} to={'all-builds'}><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Все сборки</NavItem>
       </nav>
   </div>
 };

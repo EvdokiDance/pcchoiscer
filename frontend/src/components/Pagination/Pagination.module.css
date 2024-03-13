@@ -1,16 +1,16 @@
 .paginator {
    display: flex;
    justify-content: center;
+   align-items: center;
    margin: 30px 0;
-
+   gap: 20px;
 
 }
 
 
 
 .arrow {
-   max-width: 100px;
-   margin: 0 20px;
+   min-width: 100px;
 }
 
 

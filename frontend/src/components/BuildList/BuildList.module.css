@@ -11,7 +11,7 @@
       display: grid;
       grid-template: 1fr / 200px 100px minmax(200px, 1fr) repeat(3, 200px); 
       margin-bottom: 12px;
-      border-bottom: 1px solid #dbdbdb;
+      border-bottom: 1px solid var(--border-color);
       align-items: center;
       padding: 20px 0;
   }
@@ -19,13 +19,10 @@
   .selectionWrapper {
     grid-column: 1/-1;
     display: grid;
-    row-gap: 20px;
-
+    row-gap: 50px;
+    margin-bottom: 20px;
   }
 
-  /* .selectionWrapper:last-child {
-    margin-bottom: 50px;
-  } */
 
 
   

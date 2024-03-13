@@ -1,17 +1,21 @@
 
+
+
   .selectionHrdw {
     display: grid;
     grid-template: 1fr / 200px 100px  minmax(200px, 1fr) repeat(3, 200px);
   }
 
 
+
   .anotherSelection {
     display: grid;
     gap: 15px;
     grid-template: 1fr / 200px 100px  minmax(200px, 1fr) repeat(2, 200px);
+    align-items: center;
   }
 
-  
+
 
   .name {
     padding-right: 20px;
@@ -21,3 +25,5 @@
    height: 42px;
    width: 150px;
  }
+
+

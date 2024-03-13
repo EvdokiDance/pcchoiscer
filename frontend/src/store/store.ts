@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import headerReducer from "./reducers/headerReducer";
 import partsReducer from "./reducers/partsReducer";
 import rangeInputReducer from "./reducers/rangeInputReducer";
+import authReducer from "./reducers/authReducer";
 
 
 
@@ -10,6 +11,7 @@ const store = configureStore({
         header: headerReducer,
         partsData: partsReducer,
         rangeInputData: rangeInputReducer,
+        auth: authReducer,
     },
 })
 

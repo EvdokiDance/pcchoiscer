@@ -1,0 +1,23 @@
+.form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    color: rgb(218, 215, 215);
+    font-size: 16px;
+    display: flex;
+    gap: 10px;
+}
+
+
+.link {
+    text-decoration: none;
+    color: rgb(74, 100, 248);
+}
+
+
+.link:hover {
+    color: rgb(59, 88, 250);
+}
