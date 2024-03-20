@@ -133,18 +133,14 @@ export default function Part({className, part} : Props) : JSX.Element {
    
   return (
             <article className={cn(className, styles.part)}>
-                <section className={styles.partTable}>
-                     <img className={styles.partImg} src= {part.img} alt=''/>
-                     <section className={styles.middle}>
-                           <div className={styles.partName}>{part.name}</div>
-                           <div className={styles.partFeatures}>{features}</div>
-                     </section>
-                     <section  className={styles.right}>
-                        <div className={styles.partPrice}>{currencyToRub(part.price)}</div>
+                  <img className={styles.partImg} src= {part.img} alt=''/>
+                  <div className={styles.partName}>{part.name}</div>
+                  <div className={styles.partFeatures}>{features}</div>
+                  <div className={styles.partPrice}>Цена: {currencyToRub(part.price)}</div>
+                  <div className={styles.nav}>
                         <Button onClick={addBuildComponent} className={styles.btnAdd}>Добавить</Button>
                         <LinkTag to={part.link} target='_blank' type='yandex'/>  
-                     </section>
-                </section>
+                  </div>
             </article>
   )
 }

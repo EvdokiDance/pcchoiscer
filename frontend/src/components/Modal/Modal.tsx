@@ -21,7 +21,7 @@ export default function Modal({ children, className, ...props }: PModal) {
 
   return (
     <div className={cn(className)}>
-      <MenuRoundedIcon sx={{cursor: 'pointer', fontSize: '36px'}} onClick={() => setShowModal(true)}/>
+      <MenuRoundedIcon className={styles.modalIcon} sx={{cursor: 'pointer', fontSize: '36px'}} onClick={() => setShowModal(true)}/>
       {showModal &&
         createPortal(
           <div

@@ -33,15 +33,15 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 
 
   return <div className={cn(className, styles.headerWrapp)} {...props}>
-      <h1 className={cn(styles.header)}>{headerName}</h1>
-      <NavItem to='/' replace onClick={handleLogout} className={cn(styles.logout)}><LogoutRoundedIcon sx={{color: '#6323A5'}}/> Выйти</NavItem>
-      <Modal className={styles.modal}>
-        <ModalContainer className={styles.modalContainer}>
-          <NavItem to='build'><HardwareIcon sx={{fontSize: 25, color: `#6323a5`}}/>Сборка</NavItem>
-          <NavItem to='saved-builds'><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Мои сборки</NavItem>
-          <NavItem to='all-builds'><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Все сборки</NavItem>
-          <NavItem to='/' replace onClick={handleLogout} ><LogoutRoundedIcon sx={{color: '#6323A5'}}/> Выйти</NavItem> 
-        </ModalContainer>
-      </Modal>
-  </div>;
+            <h1 className={cn(styles.header)}>{headerName}</h1>
+            <NavItem to='/' replace onClick={handleLogout} className={cn(styles.logout)}><LogoutRoundedIcon sx={{color: '#6323A5'}}/> Выйти</NavItem>
+            <Modal className={styles.modal}>
+              <ModalContainer className={styles.modalContainer}>
+                <NavItem to='build'><HardwareIcon sx={{fontSize: 25, color: `#6323a5`}}/>Сборка</NavItem>
+                <NavItem to='saved-builds'><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Мои сборки</NavItem>
+                <NavItem to='all-builds'><GridViewIcon sx={{fontSize: 25, color: `#6323a5`}}/>Все сборки</NavItem>
+                <NavItem to='/' replace onClick={handleLogout} ><LogoutRoundedIcon sx={{color: '#6323A5'}}/> Выйти</NavItem> 
+              </ModalContainer>
+            </Modal>
+          </div>;
 };

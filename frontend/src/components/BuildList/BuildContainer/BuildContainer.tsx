@@ -3,6 +3,10 @@ import { memo } from "react";
 import cn from "classnames";
 import BuildItem from "../BuildItem/BuildItem";
 
+
+
+
+
 function BuildContainer({
   buildItem,
   handleDeleteItem,
@@ -14,17 +18,17 @@ function BuildContainer({
   return (
       <>
       {components.length > 0 && (
-        <ul className={cn(className)}>
+        <ul>
           {components.map((component, index) => (
-            <li key={index}>
               <BuildItem
+                key={index}
+                className={className}
                 index={index}
                 handleDeleteItem={handleDeleteItem}
                 title={title}
                 category={category}
                 part={component}
               />
-            </li>
           ))}
         </ul>
       )}

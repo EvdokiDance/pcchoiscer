@@ -86,7 +86,7 @@ import { setHeaderName } from '../../store/reducers/headerReducer';
           right: page === totalPageCount,
         }}
         nav={{ current: page, total: totalPageCount, hardware }}/>
-     
+    
      </div>
     )
       }

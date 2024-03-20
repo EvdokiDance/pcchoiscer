@@ -29,7 +29,7 @@ export const login = createAsyncThunk<any, ThunkArg>(
             const response = await AuthService.login(email, password);
         
             localStorage.setItem("token", response.data.accessToken);
-            console.log(response); 
+
             
             return response.data;
         } catch (e) {
@@ -57,7 +57,6 @@ export const checkAuth = createAsyncThunk<any, void>(
     async () => {
         try {
             const response = await AuthService.refresh();
-            console.log(response)
             localStorage.setItem("token", response.data.accessToken);
             return response.data;
         } catch (e) {

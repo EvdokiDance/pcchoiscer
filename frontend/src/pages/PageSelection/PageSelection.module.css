@@ -6,13 +6,19 @@
     grid-template: 1fr / 50px 1fr 1fr 1fr 100px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 950px) {
     .pageSelection {
-    
-        grid-template: none;
+        display: grid;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        row-gap: 20px;
+        grid-template: 1fr /  1fr;
     }
     
+    
 }
+
+
 
 
 .partList {
@@ -21,7 +27,6 @@
 
 
 .filter {
-
     grid-column: 2/5;
 }
 
@@ -29,11 +34,8 @@
     grid-column: 2/5;
 }
 
-.arrowBack {
-    color: black;
-    width: min-content;
-    cursor: pointer;
-}
+
+
 
 
 
@@ -44,10 +46,6 @@
 } */
 
 
-.backward {
-    cursor: pointer;
-    width: max-content;
-}
 
 
 

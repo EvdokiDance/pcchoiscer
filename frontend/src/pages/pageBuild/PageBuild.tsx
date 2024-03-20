@@ -171,7 +171,6 @@ function PageBuild()  {
       <article className={styles.partsWrapper}>
         <h4 className={styles.headerComponent}>Компонент</h4>
         <section className={styles.headerChoice}>Выбор</section>
-        <section className={styles.headerPrice}>Цена</section>
        <div onClick={handleClearBuild} className={styles.restart}><RestartAltIcon sx={{fontSize: 40, cursor: 'pointer'}}/></div>
       </article>
      <BuildList dataBuild={storageBuild} setStorageBuild={setStorageBuild} initialBuild={initialBuild} handleDeleteItem={handleDeleteItem}/>

@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 
 const Layout = ({ children, className }: LayoutProps): JSX.Element => {
 
-  console.log(className);
   
   const location = useLocation();
 

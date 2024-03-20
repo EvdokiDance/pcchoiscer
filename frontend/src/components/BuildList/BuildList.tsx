@@ -10,11 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 import { currencyToRub } from "../../helpers/currencyToRub";
 
-
 import { BuildType } from "../../pages/PageBuild/PageBuildProps";
 import { saveBuild } from "../../api/api";
 import { useAppSelector } from "../../hooks/useRedux";
 import BuildContainer from "./BuildContainer/BuildContainer";
+import './BuildList.css'
+
 
 type Props = {
   dataBuild: BuildType[];
@@ -78,10 +79,8 @@ function BuildList({
   }, [dataBuild]);
 
   const handleSaveBuild = async () => {
-
-    
     await saveBuild(dataBuild, totalPrice, user.id);
-    
+
     localStorage.setItem("build", JSON.stringify(initialBuild));
     setStorageBuild(initialBuild);
   };
@@ -98,19 +97,17 @@ function BuildList({
             buildItem={buildItem}
           />
           {!buildItem.isHidden && (
-            <>
+            <div className={styles.bottomWrapper}>
               <h4 className={styles.title}>{buildItem.name}</h4>
               <Button
                 disabled={buildItem.isDisabled}
                 onClick={() => navigate(`/${buildItem.category}/1`)}
                 className={styles.partBtn}
               >
-                <>
-                  <AddIcon sx={{ fontSize: 30 }} />
-                  Выбор
-                </>
+                <AddIcon sx={{ fontSize: 30 }} />
+                Выбор
               </Button>
-            </>
+            </div>
           )}
         </li>
       ))}

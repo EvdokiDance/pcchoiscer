@@ -1,27 +1,40 @@
-.parts {
-    background-color: white;
-    box-shadow: -2px 7px 9px -1px rgba(45, 45, 45, 0.2);
-    border-radius: 20px;
-    font-size: 25px;
-    padding: 20px;
-  }
+
+
+
+.partBtn {
+  height: 2em;
+  width: 150px;
+}
   
   
   .partsWrapper {
-      display: grid;
-      grid-template: 1fr / 200px 100px minmax(200px, 1fr) repeat(3, 200px); 
-      margin-bottom: 12px;
       border-bottom: 1px solid var(--border-color);
       align-items: center;
       padding: 20px 0;
   }
 
   .selectionWrapper {
-    grid-column: 1/-1;
     display: grid;
-    row-gap: 50px;
-    margin-bottom: 20px;
+    grid-gap: 15px;
+    grid-template-columns: 125px repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, auto)
+    /* row-gap: 50px;
+    margin-bottom: 20px; */
   }
+
+   @media screen and (max-width: 1200px) {
+    .selectionWrapper {
+      grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+    }
+  } 
+
+
+  @media screen and (max-width: 480px) {
+    .selectionWrapper {
+      grid-template-columns: 70px repeat(auto-fit, minmax(auto, 130px));
+    }
+  } 
+
 
 
 
@@ -31,27 +44,42 @@
   }
   
 
-  .btnDelete {
-    height: 40px;
-  }
 
   .btnSave {
-    display: flex;
+   height: 2em;
+   display: flex;
    gap: 10px;
    padding: 0px 15px;
    width: auto;
   }
 
-  .headerPrice {
+  /* .headerPrice {
     grid-column: 4/5;
-  }
+  } */
 
   .bottomWrapper {
-    padding: 15px;
+    margin-top: 10px;
     display: flex;
+    width: 500px;
+    justify-content: space-between;
     align-items: center;
     column-gap: 20px;
   }
+
+
+
+  @media screen and (max-width: 1200px) {
+
+    .bottomWrapper {
+      width: 300px;
+    }
+
+    .partBtn {
+
+      width: 100px;
+    }
+  } 
+
 
   .totalPrice {
   }

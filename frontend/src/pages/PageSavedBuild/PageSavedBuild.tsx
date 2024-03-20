@@ -11,6 +11,7 @@ import dateTransform from '../../helpers/dateTransform';
 import { currencyToRub } from '../../helpers/currencyToRub';
 import BuildContainer from '../../components/BuildList/BuildContainer/BuildContainer';
 
+
 export default function PageSavedBuild() {
 
 
@@ -46,8 +47,8 @@ export default function PageSavedBuild() {
   return (
     <div className={styles.buildWrapper}>
       {savedBuild && Object.keys(savedBuild).length > 0 ? (<>
-        <div>Дата создания: {dateTransform(savedBuild.date)}</div>
-        <div>Полная цена: {currencyToRub(savedBuild.fullPrice)}</div>
+        <div className={styles.date}>Дата создания: {dateTransform(savedBuild.date)}</div>
+        <div className={styles.fullPrice}>Полная цена: {currencyToRub(savedBuild.fullPrice)}</div>
         <ul className={styles.itemList}>
           {savedBuild.build.map((buildItem, index) => <BuildContainer key={index} className={styles.buildContain} buildItem={buildItem}/>)}
         </ul>
