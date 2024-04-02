@@ -18,7 +18,7 @@ import { setPartsPerPage } from "../store/reducers/partsReducer";
   
     const ROWS_PER_PAGE = 25;
 
-    const {hardware = '', id = '1' }  = useParams();
+    const {hardware = '', page = '1' }  = useParams();
     const navigate = useNavigate();
 
     // const partsItem = filtredParts.length > 0 ? filtredParts : parts;
@@ -38,7 +38,7 @@ import { setPartsPerPage } from "../store/reducers/partsReducer";
 
 
     // const [partsPerPage, setPartsPerPage] = useState<PartType[]>([]);
-    const [page, setPage] = useState(Number(id));
+    const [pageN, setPageN] = useState(Number(page));
 
     const [totalPageCount, setTotalPageCount] = useState(1);
 
@@ -48,18 +48,18 @@ import { setPartsPerPage } from "../store/reducers/partsReducer";
 
     
     const handleNextPageClick = () => {
-        const current = page;
-        const next = page + 1;
+        const current = pageN;
+        const next = pageN + 1;
         dispatch(setPartsPerPage(filtredParts.slice(current*ROWS_PER_PAGE, next*ROWS_PER_PAGE)))
-        setPage(next <= totalPageCount ? next : current);
+        setPageN(next <= totalPageCount ? next : current);
   
       };
       
       
       const handlePrevPageClick = () => {
-        const current = page;
+        const current = pageN;
         const prev = current - 1;
-        setPage(prev > 0 ? prev : current);
+        setPageN(prev > 0 ? prev : current);
         dispatch(setPartsPerPage(filtredParts.slice((current-2)*ROWS_PER_PAGE, (current-1)*ROWS_PER_PAGE)))
       }
 
@@ -70,6 +70,6 @@ import { setPartsPerPage } from "../store/reducers/partsReducer";
 
     
         
-    return {page, totalPageCount, handleNextPageClick, handlePrevPageClick, setPage, setTotalPageCount, getTotalPageCount}
+    return {pageN, totalPageCount, handleNextPageClick, handlePrevPageClick, setPageN, setTotalPageCount, getTotalPageCount}
 }
 

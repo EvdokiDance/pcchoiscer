@@ -9,7 +9,8 @@ import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const signUpSchema = z.object({
   email: z.string().email('Необходимо ввести почту'),
@@ -27,6 +28,12 @@ export default function RegistrationForm() {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const auth = useAppSelector(state => state.auth) 
+
+  
 
     const {
       register,
@@ -45,29 +52,44 @@ export default function RegistrationForm() {
       dispatch(registration({email: data.email, password: data.password})).then((res : any) => {
         if (res.meta.requestStatus === 'rejected') {
           setError("root", {message: res.error.message});
+          return;
+        } 
+
+
+        
+        if (location.state?.from) {
+        navigate(location.state.from, {replace: true});
         } else {
-          navigate('/build')
-          reset();
+          navigate('/build', {replace: true});
         }
+        
       });
       
     }
 
 
 
+    useEffect(() => {
+      if (auth.isAuth) {
+        navigate('/build', {replace: true});
+      }
+    }, [])
+
+
+
     
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <h1 style={{display: 'flex', justifyContent: "center"}}>Регистрация</h1>
+        <h1 className='p-2 text-2xl'>Регистрация</h1>
         <Input register={{...register('email')}} type='text' placeholder='Почта'/>
         {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         <Input register={{...register('password')}} type='password' placeholder='Пароль'/>
         {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-        <Input register={{...register('confirmPassword')}} type='password' placeholder='Подтвердите пароль'/>
+        <Input register={{...register('confirmPassword')}} className='' type='password' placeholder='Подтвердите пароль'/>
         {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
         {errors.root && <ErrorMessage>{errors.root.message}</ErrorMessage>}
-        <Button disabled={isSubmitting}>Зарегистрироваться</Button>
-        <p className={styles.footer}>Есть аккаунт? <Link className={styles.link} to='/login'>Авторизируйтесь</Link></p>
+        <Button disabled={isSubmitting} className='w-full'>Зарегистрироваться</Button>
+        <p className={styles.footer}>Есть аккаунт? <Link className={styles.link} to='/login' state={location.state?.from ? {from: location.state?.from} : ''}>Авторизируйтесь</Link></p>
     </form>
   )
 }

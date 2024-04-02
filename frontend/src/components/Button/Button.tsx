@@ -7,6 +7,6 @@ import { ButtonProps } from './ButtonProps';
 
 export default function Button({children, className, ...props} : ButtonProps) : JSX.Element {
   return (
-    <button {...props} className={cn(styles.primary, className)}>{children}</button>
+    <button {...props} className={cn(styles.primary, className, 'bg-auto')}>{children}</button>
   )
 }

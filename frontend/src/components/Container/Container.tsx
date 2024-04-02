@@ -1,8 +1,13 @@
 
+import cn from 'classnames'
 
 
-export default function Container({children}) {
+type TContainer = {
+
+} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+
+export default function Container({children, className} : TContainer) {
     return (
-      <div className="container my-0 mx-auto px-5">{children}</div>
+      <div className={cn('container my-0 mx-auto px-2', className)}>{children}</div>
     )
   }

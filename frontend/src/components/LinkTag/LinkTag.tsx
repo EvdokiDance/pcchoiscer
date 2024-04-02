@@ -14,14 +14,7 @@ type Props = {
 export default function LinkTag({children, className, hardware, type, ...props} : Props) : JSX.Element {
 
 
-  
-
-  const inlineStyle = type === 'yandex' ? {backgroundImage: `url(${background})`, backgroundRepeat:"no-repeat", backgroundSize:"contain", height: 50, width: 50, borderRadius: '50%'} : {}
-
-
-  
-
   return (
-    <Link {...props} style={inlineStyle} className={cn(className, styles.primary)} state={hardware}>{children}</Link>
+    <Link {...props} className={cn(className, type === 'yandex' ? styles.yandex : styles.primary)} state={hardware}>{children}</Link>
   )
 }

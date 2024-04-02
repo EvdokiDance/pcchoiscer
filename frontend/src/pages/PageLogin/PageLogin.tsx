@@ -13,9 +13,9 @@ export default function PageLogin() {
 
 
 
-  if (isAuth) {
-    return <Navigate to={'/build'} replace/>
-  }
+  // if (isAuth) {
+  //   return <Navigate to={'/build'} replace/>
+  // }
 
   return (
     <div className={styles.page}>

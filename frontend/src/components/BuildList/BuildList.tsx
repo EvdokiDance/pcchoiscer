@@ -14,7 +14,7 @@ import { BuildType } from "../../pages/PageBuild/PageBuildProps";
 import { saveBuild } from "../../api/api";
 import { useAppSelector } from "../../hooks/useRedux";
 import BuildContainer from "./BuildContainer/BuildContainer";
-import './BuildList.css'
+import cn from 'classnames'
 
 
 type Props = {
@@ -82,51 +82,51 @@ function BuildList({
     await saveBuild(dataBuild, totalPrice, user.id);
 
     localStorage.setItem("build", JSON.stringify(initialBuild));
+    console.log(initialBuild);
+    
     setStorageBuild(initialBuild);
   };
 
   const navigate = useNavigate();
 
   return (
-    <ul>
+    <>
+      <ul className="grid gap-6 mb-4">
       {dataBuild.map((buildItem, index) => (
-        <li key={index} className={styles.partsWrapper}>
+        <li key={index} className="border-t border-[var(--border-color)] first:border-none">
           <BuildContainer
             handleDeleteItem={handleDeleteItem}
-            className={styles.selectionWrapper}
             buildItem={buildItem}
           />
           {!buildItem.isHidden && (
-            <div className={styles.bottomWrapper}>
-              <h4 className={styles.title}>{buildItem.name}</h4>
+            <div className="flex gap-5 justify-between py-3">
+              <h4 className="">{buildItem.name}</h4>
               <Button
+                className="self-center w-36 shrink-0 h"
                 disabled={buildItem.isDisabled}
-                onClick={() => navigate(`/${buildItem.category}/1`)}
-                className={styles.partBtn}
+                onClick={() => navigate(`/hardware/${buildItem.category}/page/1`)}
               >
-                <AddIcon sx={{ fontSize: 30 }} />
                 Выбор
               </Button>
             </div>
           )}
         </li>
       ))}
-      <div className={styles.bottomWrapper}>
+    </ul>
+    <div className="flex gap-5 mt-2 h-10 justify-center">
         <Button
+          className="block py-3 "
           disabled={isDisabled}
-          className={styles.btnSave}
-          onClick={() => handleSaveBuild()}
+          onClick={handleSaveBuild}
         >
           <SaveIcon sx={{ fontSize: 30 }} /> Сохранить
         </Button>
-        <span className={styles.totalPrice}>
+        <span className={cn(styles.totalPrice, 'self-center')}>
           ВСЕГО: {currencyToRub(totalPrice)}
         </span>
       </div>
-    </ul>
+    </>
   );
 }
 
-const memoBuildList = memo(BuildList);
-
-export default memoBuildList;
+export default BuildList;

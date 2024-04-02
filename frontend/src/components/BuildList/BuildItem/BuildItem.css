@@ -1,17 +1,17 @@
-.part {
+.build-item {
     display: grid;
     gap: 20px;
-    grid-template-rows: auto auto;
     grid-template-columns: 100px repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-areas: "img partName partName partName price"
-                         "img features features . actions";
-    border-bottom: 1px solid var(--border-color);
+    grid-template-areas:   
+    'img name name name price'
+    'img features features . actions';
+                          
 }
 
 
 @media screen and (max-width: 730px) {
-    .part {
-        grid-template-areas:   'img partName partName'
+    .build-item {
+        grid-template-areas:   'img name name'
                                 'img features features'
                                 'price actions actions'
     }
@@ -19,16 +19,15 @@
 
 
 @media screen and (max-width: 480px) {
-    .part {
+    .build-item {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         gap: 10px;   
         
     }
-    
-    .partImg {
-        justify-self: center;
+
+    .build-item__img {
         height: 150px;
         width: 150px;
     }
@@ -36,31 +35,30 @@
 
 
 
-.partName {
-    grid-area: partName;
+ .build-item__name {
+    grid-area: name;
 }
 
 
-.partImgContainer {
+
+
+.build-item__img_container {
     grid-area: img;
 }
+.build-item__img {
+    display: block;
+}
 
-.partFeatures {
+
+.build-item__features {
     grid-area: features;
 }
 
-.partPrice {
+.build-item__price {
     grid-area: price;
 }
 
-.actions {
- grid-area: actions;
+
+.build-item__actions {
+    grid-area: actions;
 }
-
-
-
-
-
-
-
-

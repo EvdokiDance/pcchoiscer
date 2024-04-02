@@ -12,9 +12,6 @@ import { PartType } from '../Part/Props';
 import { useDebounce } from '../../hooks/useDebunce';
 import { Props } from './FilterProps';
 
-import cn from 'classnames'
-
-
 const Filter = ({className, ...props} : Props) => {
 
   const dispatch = useAppDispatch();
@@ -33,7 +30,6 @@ const Filter = ({className, ...props} : Props) => {
   }
   
   const filterParts = (parts: PartType[]) => {
-  
     return debouncedSearchTerm === '' ? parts : parts.filter((part) => part.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase().trim()))
   }
 
@@ -73,8 +69,8 @@ const Filter = ({className, ...props} : Props) => {
    }, [debouncedSearchTerm])
 
   return (
-    <div className={cn(className, styles.filterContain)} {...props}>
-      <Input className={styles.input} value={searchItem} placeholder='Поиск...' onChange={(e) => handleChange(e)}/>
+    <div className='flex items-center flex-wrap justify-center gap-10' {...props}>
+      <Input className='pr-[115px] p-[15px] w-[600px]' value={searchItem} placeholder='Поиск...' onChange={(e) => handleChange(e)}/>
       <RangeInputGroup className={styles.rangeInput} searchTerm={debouncedSearchTerm} filterParts={filterParts}/>
     </div>
   );

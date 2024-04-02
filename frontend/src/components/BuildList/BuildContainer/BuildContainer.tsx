@@ -18,11 +18,11 @@ function BuildContainer({
   return (
       <>
       {components.length > 0 && (
-        <ul>
+        <ul className="grid">
           {components.map((component, index) => (
               <BuildItem
                 key={index}
-                className={className}
+                className={cn(className, 'py-5')}
                 index={index}
                 handleDeleteItem={handleDeleteItem}
                 title={title}

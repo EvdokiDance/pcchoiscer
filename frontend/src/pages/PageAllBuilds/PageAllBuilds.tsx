@@ -8,23 +8,27 @@ import { TSavedBuild } from "../../api/typesApi";
 import styles from "./PageAllBuilds.module.css";
 import { Link } from "react-router-dom";
 import { SavedBuild } from "../PageSavedBuilds/SavedBuild/SavedBuild";
+import { Spinner } from "../../components";
 
 export default function PageAllBuilds() {
   const [builds, setBuilds] = useState<TSavedBuild[] | []>([]);
+  const [spinner, setSpinner] = useState(true); 
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setHeaderName("Все сборки"));
 
-    getAllBuilds().then((builds) => setBuilds(builds));
+    getAllBuilds().then((builds) => setBuilds(builds)).finally(() => setSpinner(false));
   }, []);
 
 
   return (
     <div>
-      {builds.length > 0 ? (
-        <ul className={styles.buildWrapper}>
+      {spinner ? <Spinner/> : 
+      <>
+        {builds.length > 0 ? (
+        <ul className={styles.buildWrapper}>  
           {builds.map((savedBuild: TSavedBuild) => (
             <article key={savedBuild.id} className={styles.buildItem}>
               <h1 className={styles.buildItemTitle}>
@@ -39,6 +43,7 @@ export default function PageAllBuilds() {
       ) : (
         <div>Сборок нету</div>
       )}
+      </>}
     </div>
   );
 }

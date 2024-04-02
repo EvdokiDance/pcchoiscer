@@ -2,14 +2,25 @@
   margin-top: 10px;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 60px;
 }
 
 
 .buildItem {
+  max-width: 300px;
   padding: 10px;
   font-weight: 500;
+}
+
+@media screen and (max-width: 510px) {
+  .buildWrapper {
+    padding: 0 15px;
+    justify-items: center;
+  }
+  .buildItem {
+    width: 100%;
+  }
 }
 
 .buildItem:hover {

@@ -19,7 +19,7 @@ export default function PartList({className, ...props} : Props) : JSX.Element {
 
   const seed = useUIDSeed();
 
-  const partsList = partsPerPage.length > 0 ? partsPerPage.map((part, index) => <PartItem className={styles.partItem} key={seed(part)} part={part}/>) 
+  const partsList = partsPerPage.length > 0 ? partsPerPage.map((part, index) => <PartItem className='' key={seed(part)} part={part}/>) 
     : (
     <div className={styles.empty}>
       Не найдено
@@ -27,7 +27,7 @@ export default function PartList({className, ...props} : Props) : JSX.Element {
     </div>)
 
   return (
-    <div {...props} className={cn(className, styles.partList)}>
+    <div {...props} className={cn(className, 'grid gap-5')}>
         {partsList}
     </div>
   )

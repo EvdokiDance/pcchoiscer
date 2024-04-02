@@ -23,7 +23,7 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3);
         const user = await prisma.user.create({data: {email: email, password: hashPassword}})
 
-        const userDto = {id: user.id, email: user.email};
+        const userDto = {id: user.id, email: user.email, role: user.role};
         const tokens = tokenService.generateTokens({...userDto});
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
@@ -49,7 +49,7 @@ class UserService {
             throw new Error('Неверный пароль');
         }
 
-        const userDto = {id: user.id, email: user.email};
+        const userDto = {id: user.id, email: user.email, role: user.role};
         const tokens = tokenService.generateTokens({...userDto});
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
@@ -83,7 +83,7 @@ class UserService {
             }
         })
 
-        const userDto = {id: user.id, email: user.email};
+        const userDto = {id: user.id, email: user.email, role: user.role};
         const tokens = tokenService.generateTokens({...userDto});
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
         

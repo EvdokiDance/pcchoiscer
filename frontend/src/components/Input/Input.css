@@ -1,9 +1,10 @@
 .input {
+    padding: 15px 5rem 15px 15px;
+    max-width: 100%;
     appearance: none;
     height: auto;
     outline: none;
     border: none;
-    padding: 15px 115px 15px 15px;
     border-radius: 8px;
     font-size: 17px;
     letter-spacing: 0em;
@@ -17,6 +18,6 @@
 
 
 .input:focus {
-    box-shadow: 0px 0px 1px 1px rgba(145, 25, 229, 1);
+    box-shadow: 0px 0px 1px 1px #9119e5;
    transition: box-shadow 0.3s;
 }

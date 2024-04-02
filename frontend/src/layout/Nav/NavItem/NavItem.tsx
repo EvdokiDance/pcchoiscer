@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import { Link, NavLink, NavLinkProps } from 'react-router-dom'
 
 import styles from './NavItem.module.css';
 import cn from 'classnames'
 
 type PNavItem = {
     
-} & LinkProps
+} & NavLinkProps
 
 export default function NavItem({to, children, className, ...props} : PNavItem) {
   return (
-    <Link {...props} to={to} className={cn(styles.navItem, className)}>{children}</Link>
+    <NavLink   style={({isActive}) => { return {color: isActive ? "#884bc5" : ""}}} {...props} to={to} className={cn(styles.navItem, className)}>{children}</NavLink>
   )
 }

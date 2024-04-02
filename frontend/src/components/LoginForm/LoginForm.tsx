@@ -3,13 +3,15 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { login } from "../../store/reducers/authReducer";
 import styles from "./LoginForm.module.css";
-import { useAppDispatch } from "../../hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import {z} from 'zod'
 
 import {zodResolver} from "@hookform/resolvers/zod"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 const signInSchema = z.object({
   email: z.string().email({message: 'Необходимо ввести почту'}),
@@ -20,9 +22,27 @@ const signInSchema = z.object({
 type TSignInSchema = z.infer<typeof signInSchema>;
 
 
+
+
+
 export default function LoginForm() {
 
+
+
+
   const dispatch = useAppDispatch();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const auth = useAppSelector((state) => state.auth);
+
+  
+  useEffect(() => {
+    if (auth.isAuth) {
+      navigate('/build', {replace: true});
+    }
+  }, [])
+
 
   const {
     register,
@@ -40,14 +60,20 @@ export default function LoginForm() {
     if (res.meta.requestStatus === 'rejected') {
       setError('root', {message: res.error.message})
       return;
-    }
-    
+    } 
+
     reset();
+
+    if (location.state?.from) {
+      navigate(location.state.from, {replace: true});
+    } else {
+      navigate('/build', {replace: true});
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <h1 style={{display: 'flex', justifyContent: "center"}}>Вход</h1>
+      <h1 className="p-2 text-2xl">Вход</h1>
       <Input
         register={{
           ...register("email")}}
@@ -75,10 +101,10 @@ export default function LoginForm() {
         <ErrorMessage>{`${errors.root.message}`}</ErrorMessage>
       )}
 
-      <Button type="submit" disabled={isSubmitting}>
+      <Button className="w-full" type="submit" disabled={isSubmitting}>
         Войти
       </Button>
-      <p className={styles.footer}>Нету аккаунта? <Link className={styles.link} to='/registration'>Зарегиструйтесь</Link></p>
+      <p className={styles.footer}>Нету аккаунта? <Link className={styles.link} to='/registration' state={location.state?.from ? {from: location.state?.from} : ''}>Зарегиструйтесь</Link></p>
     </form>
   );
 }

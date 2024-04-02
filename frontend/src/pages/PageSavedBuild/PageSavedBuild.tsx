@@ -10,12 +10,15 @@ import { useParams } from 'react-router-dom';
 import dateTransform from '../../helpers/dateTransform';
 import { currencyToRub } from '../../helpers/currencyToRub';
 import BuildContainer from '../../components/BuildList/BuildContainer/BuildContainer';
-
+import Container from '../../components/Container/Container';
+import cn from 'classnames'
+import { Spinner } from '../../components';
 
 export default function PageSavedBuild() {
 
 
-  const [savedBuild, setSavedBuild] = useState<TSavedBuild>(null)
+  const [savedBuild, setSavedBuild] = useState<TSavedBuild>(null);
+  const [spinner, setSpinner] = useState(true);
 
   const dispatch = useDispatch()
 
@@ -30,9 +33,9 @@ export default function PageSavedBuild() {
 
 
   useEffect(() => {
-
-
-    getBuildById(id).then((build) => setSavedBuild(build));
+    
+    window.scrollTo(0, 0)
+    getBuildById(id).then((build) => setSavedBuild(build)).finally(() => setSpinner(false));
     
 
   }, [])
@@ -45,14 +48,23 @@ export default function PageSavedBuild() {
 
 
   return (
-    <div className={styles.buildWrapper}>
-      {savedBuild && Object.keys(savedBuild).length > 0 ? (<>
-        <div className={styles.date}>Дата создания: {dateTransform(savedBuild.date)}</div>
-        <div className={styles.fullPrice}>Полная цена: {currencyToRub(savedBuild.fullPrice)}</div>
-        <ul className={styles.itemList}>
-          {savedBuild.build.map((buildItem, index) => <BuildContainer key={index} className={styles.buildContain} buildItem={buildItem}/>)}
-        </ul>
-      </>) : <div>Сборок нету</div>}
-    </div>
+    <>
+      <Container>
+        {spinner ? <Spinner/> : 
+        <>
+            <div className={cn(styles.buildWrapper)}>
+          {savedBuild && Object.keys(savedBuild).length > 0 ? (<>
+            <div className='flex flex-col items-center mb-5'>
+              <div className={styles.date}>Дата создания: {dateTransform(savedBuild.date)}</div>
+              <div className={styles.fullPrice}>Полная цена: {currencyToRub(savedBuild.fullPrice)}</div>
+            </div>
+            <ul className={styles.itemList}>
+              {savedBuild.build.map((buildItem, index) => <BuildContainer key={index} className={cn(styles.buildContain)} buildItem={buildItem}/>)}
+            </ul>
+          </>) : <div>Сборок нету</div>}
+        </div>
+        </>}
+      </Container>
+    </>
   )
 }

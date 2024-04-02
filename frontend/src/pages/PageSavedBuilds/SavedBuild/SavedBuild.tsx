@@ -1,4 +1,3 @@
-import React from 'react'
 import { Props } from './SavedBuildProps'
 import styles from './SaveBuild.module.css'
 
@@ -7,8 +6,6 @@ import dateTransform from '../../../helpers/dateTransform';
 export function SavedBuild({savedBuild} : Props) {
 
   const { build, date } = savedBuild;
-
-
 
 
 

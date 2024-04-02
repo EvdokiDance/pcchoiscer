@@ -125,18 +125,18 @@ import { useDebounce } from '../../hooks/useDebunce';
 
 
   return (
-    <div {...props} className={cn(className, styles.wrapper)}>
-      <h3 className={styles.header}>ЦЕНА</h3>
-      <article className={styles.inputsContainer}>
-        <div className={styles.inputWrap}>
+    <div {...props} className={cn('flex flex-col flex-wrap w-[320px] gap-5 bg-[var(--nav-color)] border-[var(--border-color)] border rounded-2xl px-5 py-8')}>
+      <h3 className={cn('flex justify-center')}>ЦЕНА</h3>
+      <div className='flex gap-5'>
+        <div className='flex flex-col gap-1'>
           ОТ
-          <RangeInput className={styles.input} minmax={rangeInputData.currentMin} placeholder={`от ${rangeInputData.min} `} handleOnChange={handleOnChangeMin} />
+          <RangeInput className={cn('w-[125px]')} minmax={rangeInputData.currentMin} placeholder={`от ${rangeInputData.min}`} handleOnChange={handleOnChangeMin} />
         </div>
-        <div className={styles.inputWrap}>
+        <div className='flex flex-col gap-1'>
           ДО
-          <RangeInput className={styles.input} minmax={rangeInputData.currentMax} placeholder={`до ${rangeInputData.max} `} handleOnChange={handleOnChangeMax}/>
+          <RangeInput className='w-[125px]' minmax={rangeInputData.currentMax} placeholder={`до ${rangeInputData.max} `} handleOnChange={handleOnChangeMax}/>
         </div>
-      </article>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 .primary {
-    height: 2em;
+    background-image: initial;
+    padding: 2.5px 10px;
     font-size: 0.875em;
     max-width: 200px;
     display: inline-flex;
+    gap: 5px;
     align-items: center;
     justify-content: center;
     font-weight: 400;
@@ -12,7 +14,7 @@
     border: none;
     text-decoration: none;
     background: radial-gradient(circle, rgba(213,97,255,1) 0%, rgba(201,97,242,1) 14%, rgba(211,89,251,1) 61%, rgba(181,73,252,1) 100%);
-    transition: background 2s ease;
+    transition: background 0.2s ease;
 }
 
 .primary:hover {

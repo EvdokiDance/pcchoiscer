@@ -31,7 +31,7 @@ export default function Pagination({ nav, disable, onNextPageClick, onPrevPageCl
 
   return (
     <div className={cn(styles.paginator, className)}>
-    <Link to={`/${nav.hardware}/${nav.current-1}`}>
+    <Link to={`/hardware/${nav.hardware}/page/${nav.current-1}`}>
     <Button
       className={styles.arrow}
       type="button"
@@ -46,7 +46,7 @@ export default function Pagination({ nav, disable, onNextPageClick, onPrevPageCl
         {nav.current} / {nav.total}
       </span>
     )}
-    <Link to={`/${nav.hardware}/${nav.current+1}`}>
+    <Link to={`/hardware/${nav.hardware}/page/${nav.current+1}`}>
       <Button
         className={styles.arrow}
         type="button"

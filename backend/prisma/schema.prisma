@@ -4,45 +4,47 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
 
 model User {
- id Int @id @default(autoincrement())
- email String @unique
- password String
- build Build[]
- token Token?
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  role    Role     @default(USER)
+  password String
+  build    Build[]
+  token    Token?
 }
 
+enum Role {
+  USER
+  ADMIN
+}
 
 model Token {
-  id Int @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   refreshToken String @unique
-  user User @relation(fields: [userId], references: [id])
-  userId Int @unique
+  userId       Int    @unique
+  user         User   @relation(fields: [userId], references: [id])
 }
-
 
 model Build {
-  id Int @id @default(autoincrement())
-  date DateTime 
+  id        Int      @id @default(autoincrement())
+  date      DateTime
   fullPrice Int
-  build Json
-  user User @relation(fields: [userId], references: [id])
-  userId Int
+  build     Json
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
 
-// model PartBuild {
-//     id Int @id @default(autoincrement())
-//     category String
-//     components Json
-//     isDisabled Boolean
-//     isHidden Boolean
-//     build Build @relation(fields: [buildId], references: [id])
-//     buildId Int @unique
-// }
-
-
+model PartnerArticle {
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  companyName String
+  title       String
+  description String
+  text        String
+  link        String?
+  img         String
+}

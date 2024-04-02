@@ -1,4 +1,5 @@
 .primary {
+    padding: 2.5px 10px;
     font-size:0.875em;
     display: inline-flex;
     max-width: 200px;
@@ -25,4 +26,18 @@
     color: #999999; /* Цвет текста для отключенной кнопки */
     cursor: not-allowed; /* Изменение вида курсора для отключенной кнопки */
     /* Другие стили, если необходимо */
+  }
+
+
+  .yandex {
+    background-image: url('./../../images/ym.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  .yandex:hover {
+    
   }

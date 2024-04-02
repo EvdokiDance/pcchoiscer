@@ -9,6 +9,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { currencyToRub } from '../../helpers/currencyToRub';
 import { BuildType } from '../../pages/PageBuild/PageBuildProps';
 
+
+
 export default function Part({className, part} : Props) : JSX.Element {
 
 
@@ -26,60 +28,7 @@ export default function Part({className, part} : Props) : JSX.Element {
   const {hardware = ''} = useParams();
   
   
- const handleIsDisabled = (build : BuildType[]) => {
-
-      const recur = (buildItem : BuildType, index : number) => {
-
-            if (index === build.length) {
-                  return;
-            }
-
-            if (buildItem.category === 'ssd' && buildItem.components.length === 0) {
-                  return recur(build[index+1], index+1);
-            } else if (buildItem.category === 'ssd' && buildItem.components.length > 0) {
-
-                  build[index].isDisabled = false;
-                  build[index+1].isDisabled =false;
-
-                 return recur(build[index+2], index+2);
-            }
-
-            if (buildItem.category === 'hdd' && buildItem.components.length === 0) {
-
-                  build[index-1].isDisabled = false;
-                  build[index].isDisabled = false;
-
-                  return;
-
-            } else if (buildItem.category === 'hdd' && buildItem.components.length > 0) {
-
-                  build[index-1].isDisabled = false;
-                  build[index].isDisabled = false;
-
-                  return recur(build[index+1], index+1);
-            }
-
-
-
-
-            if (buildItem.components.length === 0) {
-                  
-                build[index].isDisabled = false; 
-            } else {
-
-                  build[index].isDisabled = false;
-                  return recur(build[index+1], index+1);
-            }
-
-      }
-
-      recur(build[0], 0);
-
-
-
-      return build;
-
- }
+ 
   
 
   
@@ -88,43 +37,23 @@ export default function Part({className, part} : Props) : JSX.Element {
         
         let localeBuild : BuildType[] = JSON.parse(localStorage.getItem('build'));
 
-        
-
         const newComponent = {...part};
 
-                  if (hardware ===  'processors' || hardware === 'moutherboards' || hardware === 'power' || hardware === 'cases') {
-                           
-                           let newLocaleBuild = localeBuild.map((buildItem, i) => {
-                                    if (buildItem.category === hardware) {
-                                          buildItem.components = [{...newComponent}];
-                                          buildItem.isHidden = true;
-                                    }
-                                    return buildItem;
-                             })
-
-
-                             newLocaleBuild = handleIsDisabled(newLocaleBuild);
-                             
-
-
-                             localStorage.setItem('build', JSON.stringify(newLocaleBuild))
-
-                  } else {
-                        let newLocaleBuild = localeBuild.map((buildItem, index) => {
-                              if (buildItem.category === hardware) {
-                                    buildItem.components.push(newComponent);
-                              }
-                              return buildItem;
-                       })
-
-                             newLocaleBuild = handleIsDisabled(newLocaleBuild);
-                       localStorage.setItem('build', JSON.stringify(newLocaleBuild))
-
-
+            let newLocaleBuild = localeBuild.map((buildItem, index) => {
+                  if (buildItem.category === hardware) {
+                        buildItem.components.push(newComponent);
                   }
+                  return buildItem;
+            })
+
+                  // newLocaleBuild = handleIsDisabled(newLocaleBuild);
+                  localStorage.setItem('build', JSON.stringify(newLocaleBuild));
+
+
                   
-                  navigate('/build');
-                  return;  
+                  
+            navigate('/build');
+            return;  
 
       }
 
@@ -132,14 +61,18 @@ export default function Part({className, part} : Props) : JSX.Element {
    
    
   return (
-            <article className={cn(className, styles.part)}>
-                  <img className={styles.partImg} src= {part.img} alt=''/>
+            <article className={cn(className, styles.part, 'py-5')}>
+                  <div className={cn(styles.partImgContainer, 'flex justify-center')}>
+                       <div>
+                              <img className={styles.partImg} src= {part.img} alt=''/>
+                       </div>
+                  </div>
                   <div className={styles.partName}>{part.name}</div>
                   <div className={styles.partFeatures}>{features}</div>
-                  <div className={styles.partPrice}>Цена: {currencyToRub(part.price)}</div>
-                  <div className={styles.nav}>
-                        <Button onClick={addBuildComponent} className={styles.btnAdd}>Добавить</Button>
-                        <LinkTag to={part.link} target='_blank' type='yandex'/>  
+                  <div className={cn(styles.partPrice, 'flex justify-center md:justify-self-end')}>Цена: {currencyToRub(part.price)}</div>
+                  <div className={cn(styles.actions, 'flex flex-wrap gap-4 shrink-0 items-center justify-center content-between sm:justify-end')}>
+                        <Button onClick={addBuildComponent} className={cn(styles.btnAdd, 'w-36 shrink-0')}>Добавить</Button>
+                        <LinkTag to={part.link} className='w-8 h-8 shrink-0' target='_blank' type='yandex'/>  
                   </div>
             </article>
   )

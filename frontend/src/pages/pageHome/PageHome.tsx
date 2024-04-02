@@ -1,25 +1,25 @@
 
 import { Link } from 'react-router-dom';
-import styles from './PageHome.module.css';
 import cn from 'classnames'
 import Container from '../../components/Container/Container';
+import BuildJPG from './home.jpg'
+import { Button } from '../../components';
 
-
-function PageHome({className} : any)  {
+function PageHome()  {
  
 
   return (
-    <div className="">
+    <div className='home'>
       <Container>
         <div className='grid justify-items-center gap-5'>
-          <h1 className="text-center">
-              Pc Picker. Соберите свой компьютер при помощи ИИ. Сравнивайте и делитесь.
+          <h1 className="text-3xl text-center pt-2">
+              Pc Picker. <br/> Соберите свой компьютер при помощи ИИ. <br/> Сравнивайте и делитесь.
           </h1>
           <div className="flex gap-5 flex-wrap justify-center">
-            <Link className={cn(styles.link, 'max-w-50 text-base')} to='/login'>Авторизироваться</Link> 
-            <Link className={cn(styles.link, 'max-w-50 text-base')} to='/registration'>Зарегистрироваться</Link>
+            <Link to='/login'><Button className={'h-10'}>Авторизироваться</Button></Link>
+            <Link to='/registration'><Button className={'h-10'}>Зарегистрироваться</Button></Link>
           </div>
-          <img alt='' src='' className={styles.imgBuild}/>
+          <img alt='imageBuild' src={BuildJPG} className='border-[var(--border-color)] border rounded-3xl h-3/4'/>
         </div>
       </Container>
     </div>

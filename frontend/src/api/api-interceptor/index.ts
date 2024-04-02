@@ -26,7 +26,7 @@ $api.interceptors.response.use((config) => {
     
     const originalRequest = error.config; 
     
-    if (error.response.status == 401) {
+    if (error.response.status === 401) {
         try {
 
             const response = await AuthService.refresh();
@@ -37,6 +37,13 @@ $api.interceptors.response.use((config) => {
             return error;
         }
     }
+
+    if (error.response.status === 403) {
+        return error;
+    }
+
+
+
     return Promise.reject(error)
 })
 

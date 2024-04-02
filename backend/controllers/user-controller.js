@@ -2,8 +2,6 @@ import userService from "../service/user-service.js";
 
 import {validationResult} from 'express-validator';
 
-console.log('SSS', userService);
-
 class UserController {
      async registration(req, res, next) {
         try {

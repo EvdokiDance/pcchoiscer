@@ -20,6 +20,7 @@ export default (req, res, next) => {
         }
 
         req.user = userData;
+        res.locals.isAdmin = userData.role === 'ADMIN'
         next();
 
     } catch(e) {

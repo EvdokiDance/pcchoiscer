@@ -13,12 +13,13 @@ type ThunkArg = {
 type TUser = {
     id: string,
     email: string,
+    role: 'USER' | 'ADMIN'
 }
 
 
 const initialState = {
     isAuth: false,
-    isAuthInProgress: false,
+    isAuthInProgress: true,
     user: {} as TUser
 }
 
@@ -115,6 +116,7 @@ export const authSlice = createSlice({
             })
         builder.addCase(checkAuth.fulfilled, (state, action) => {
                 
+                console.log('checkAuth.fulfilled');
                 state.user = action.payload.userDto;
                 state.isAuth = true;
                 state.isAuthInProgress = false; 
