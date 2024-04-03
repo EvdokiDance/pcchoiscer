@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { AuthResponse } from "./Auth";
 
 
-import { API_URL } from "../api/api-interceptor";
+
 
 export default class AuthService {
     static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
@@ -21,7 +21,7 @@ export default class AuthService {
     }
 
     static async refresh(): Promise<AxiosResponse<AuthResponse>> {
-        return axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
+        return axios.get<AuthResponse>(`${process.env.REACT_APP_API_HOST}/refresh`, {withCredentials: true})
     }
 }
 

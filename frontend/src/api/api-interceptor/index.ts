@@ -2,11 +2,10 @@ import axios, { AxiosError } from "axios";
 import { error } from "console";
 import AuthService from "../../services/AuthService";
 
-export const API_URL = `http://localhost:5000/api`
-
+ 
 const $api = axios.create({
     withCredentials: true,
-    baseURL: API_URL,
+    baseURL: "http://localhost:5000/api",
 })
 
 

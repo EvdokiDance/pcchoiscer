@@ -18,6 +18,7 @@ class UserController {
         }
     }
     async login(req, res, next) {
+
         try {
             const {email, password} = req.body;
             console.log(email, password);
