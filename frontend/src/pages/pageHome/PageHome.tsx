@@ -4,7 +4,7 @@ import Container from '../../components/Container/Container';
 import BuildJPG from './home.jpg'
 import { Button } from '../../components';
 
-export const PageHome = () =>  {
+ const PageHome = () =>  {
   return (
     <div>
       <Container>
@@ -23,3 +23,4 @@ export const PageHome = () =>  {
   );
 }
 
+export default PageHome;
