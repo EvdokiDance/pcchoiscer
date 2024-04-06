@@ -2,20 +2,20 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import PageHome from 'pages/PageHome/PageHome';
-import PageBuild from './pages/PageBuild/PageBuild';
-import PageSavedBuilds from './pages/PageSavedBuilds/PageSavedBuilds';
-import PageSelection from './pages/PageSelection/PageSelection';
-import PageSavedBuild from './pages/PageSavedBuild/PageSavedBuild';
-import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
-import PageLogin from './pages/PageLogin/PageLogin';
+import PageBuild from 'pages/PageBuild/PageBuild';
+import PageSavedBuilds from 'pages/PageSavedBuilds/PageSavedBuilds';
+import PageSelection from 'pages/PageSelection/PageSelection';
+import PageSavedBuild from 'pages/PageSavedBuild/PageSavedBuild';
+import PrivateRoute from 'pages/PrivateRoute/PrivateRoute';
+import PageLogin from 'pages/PageLogin/PageLogin';
 import PageRegistration from './pages/PageRegistration/PageRegistration';
-import PageAllBuilds from './pages/PageAllBuilds/PageAllBuilds';
-import PageAdminPanel from './pages/PageAdminPanel/PageAdminPanel';
+import PageAllBuilds from 'pages/PageAllBuilds/PageAllBuilds';
+import PageAdminPanel from 'pages/PageAdminPanel/PageAdminPanel';
 import { useEffect } from 'react';
-import { useAppDispatch } from './hooks/useRedux';
-import { checkAuth } from './store/reducers/authReducer';
-import AdminArticle from './components/AdminArticleItem/AdminArticle';
-import AdminArticles from './components/AdminArticles/AdminArtciles';
+import { useAppDispatch } from 'hooks/useRedux';
+import { checkAuth } from 'store/reducers/authReducer';
+import AdminArticle from 'components/AdminArticleItem/AdminArticle';
+import AdminArticles from 'components/AdminArticles/AdminArtciles';
 
 
 
