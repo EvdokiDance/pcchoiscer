@@ -7,7 +7,7 @@ import { TSavedBuild } from "../../api/typesApi";
 
 import styles from "./PageAllBuilds.module.css";
 import { Link } from "react-router-dom";
-import { SavedBuild } from "../PageSavedBuilds/savedBuild/SavedBuild";
+import { SavedBuild } from "../pageSavedBuilds/savedBuild/SavedBuild";
 import { Spinner } from "../../components";
 
 export default function PageAllBuilds() {
