@@ -4,11 +4,9 @@ import Container from '../../components/Container/Container';
 import BuildJPG from './home.jpg'
 import { Button } from '../../components';
 
-function PageHome()  {
- 
-
+export const PageHome = () =>  {
   return (
-    <div className='home'>
+    <div>
       <Container>
         <div className='grid justify-items-center gap-5'>
           <h1 className="text-3xl text-center pt-2">
@@ -25,4 +23,3 @@ function PageHome()  {
   );
 }
 
-export default PageHome;
