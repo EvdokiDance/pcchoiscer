@@ -1,7 +1,7 @@
 
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import PageHome from './pages/PageHome/PageHome';
+import PageHome from 'pages/PageHome/PageHome';
 import PageBuild from './pages/PageBuild/PageBuild';
 import PageSavedBuilds from './pages/PageSavedBuilds/PageSavedBuilds';
 import PageSelection from './pages/PageSelection/PageSelection';
