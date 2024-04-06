@@ -7,7 +7,7 @@ import Button from '../Button/Button'
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { currencyToRub } from '../../helpers/currencyToRub';
-import { BuildType } from '../../pages/PageBuild/PageBuildProps';
+import { BuildType } from '../../pages/pageBuild/PageBuildProps';
 
 
 

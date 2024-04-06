@@ -1,4 +1,4 @@
-import { BuildType } from './../pages/PageBuild/PageBuildProps';
+import { BuildType } from '../pages/pageBuild/PageBuildProps';
 
 
 

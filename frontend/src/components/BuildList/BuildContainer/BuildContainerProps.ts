@@ -1,5 +1,5 @@
 import { PartType } from "../../Part/Props";
-import { BuildType } from "../../../pages/PageBuild/PageBuildProps";
+import { BuildType } from "../../../pages/pageBuild/PageBuildProps";
 
 export interface Props  {
     buildItem: BuildType,

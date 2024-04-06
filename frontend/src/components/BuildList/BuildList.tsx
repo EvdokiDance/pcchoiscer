@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { currencyToRub } from "../../helpers/currencyToRub";
 
-import { BuildType } from "../../pages/PageBuild/PageBuildProps";
+import { BuildType } from "../../pages/pageBuild/PageBuildProps";
 import { saveBuild } from "../../api/api";
 import { useAppSelector } from "../../hooks/useRedux";
 import BuildContainer from "./BuildContainer/BuildContainer";

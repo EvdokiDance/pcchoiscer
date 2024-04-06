@@ -1,5 +1,5 @@
 import Layout from "../layout/Layout"
-import PageSelection from "../pages/PageSelection"
+import PageSelection from "../pages/pageSelection"
 
 const components = [ "videocards", "processors", "cases", "coolers", "hdd", "moutherboards", "power", "ram", "ssd"]
 

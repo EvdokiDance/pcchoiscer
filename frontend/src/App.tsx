@@ -1,16 +1,16 @@
 
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import PageHome from 'pages/PageHome/PageHome';
-import PageBuild from 'pages/PageBuild/PageBuild';
-import PageSavedBuilds from 'pages/PageSavedBuilds/PageSavedBuilds';
-import PageSelection from 'pages/PageSelection/PageSelection';
-import PageSavedBuild from 'pages/PageSavedBuild/PageSavedBuild';
-import PrivateRoute from 'pages/PrivateRoute/PrivateRoute';
-import PageLogin from 'pages/PageLogin/PageLogin';
-import PageRegistration from './pages/PageRegistration/PageRegistration';
-import PageAllBuilds from 'pages/PageAllBuilds/PageAllBuilds';
-import PageAdminPanel from 'pages/PageAdminPanel/PageAdminPanel';
+import PageHome from 'pages/pageHome/PageHome';
+import PageBuild from 'pages/pageBuild/PageBuild';
+import PageSavedBuilds from 'pages/pageSavedBuilds/PageSavedBuilds';
+import PageSelection from 'pages/pageSelection/PageSelection';
+import PageSavedBuild from 'pages/pageSavedBuild/PageSavedBuild';
+import PrivateRoute from 'pages/privateRoute/PrivateRoute';
+import PageLogin from 'pages/pageLogin/PageLogin';
+import PageRegistration from './pages/pageRegistration/PageRegistration';
+import PageAllBuilds from 'pages/pageAllBuilds/PageAllBuilds';
+import PageAdminPanel from 'pages/pageAdminPanel/PageAdminPanel';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'hooks/useRedux';
 import { checkAuth } from 'store/reducers/authReducer';

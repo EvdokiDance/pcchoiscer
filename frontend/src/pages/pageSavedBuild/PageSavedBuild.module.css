@@ -1,0 +1,42 @@
+.buildWrapper {
+    margin: 20px 0;
+}
+
+.itemList {
+    display: grid;
+    row-gap: 10px;
+}
+
+.buildContain {
+    font-size: 18px;
+    display: grid;
+    row-gap: 20px;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 125px repeat(auto-fit, minmax(100px, 1fr));
+    align-items: start;
+    padding-top: 15px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .buildContain {
+        padding: 5px;
+        font-size: 14px;
+        gap: 5px;
+        grid-template-columns: 75px repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .date, .fullPrice {
+        font-size: 16px;
+    }
+}
+
+
+
+@media screen and (max-width: 480px) {
+    .buildContain {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

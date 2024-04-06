@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BuildType } from "../pages/PageBuild/PageBuildProps";
+import { BuildType } from "../pages/pageBuild/PageBuildProps";
 import { TSavedBuild } from "./typesApi";
 import { ArticleType } from "../components/AdminArticleItem/AdminArticle";
 
