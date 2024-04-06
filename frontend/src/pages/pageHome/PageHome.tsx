@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-import cn from 'classnames'
 import Container from '../../components/Container/Container';
 import BuildJPG from './home.jpg'
 import { Button } from '../../components';

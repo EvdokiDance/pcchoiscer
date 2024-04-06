@@ -1,4 +1,3 @@
-
 import { Props } from "./BuildItemProps"
 
 import LinkTag from "../../LinkTag/LinkTag"
@@ -8,10 +7,6 @@ import { currencyToRub } from "../../../helpers/currencyToRub";
 import './BuildItem.css'
 
 import cn from 'classnames'
-
-
-
-
 
 const BuildItem = ({part, title, category, index, className, handleDeleteItem, ...props} : Props) => {
  

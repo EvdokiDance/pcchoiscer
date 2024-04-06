@@ -2,10 +2,11 @@ import axios, { AxiosError } from "axios";
 import { error } from "console";
 import AuthService from "../../services/AuthService";
 
+
  
 const $api = axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:5000/api",
+    baseURL: `${process.env.REACT_APP_API_KEY}/api`,
 })
 
 
@@ -24,6 +25,9 @@ $api.interceptors.response.use((config) => {
 
     
     const originalRequest = error.config; 
+
+    console.log('originalRequest', error.config);
+    
     
     if (error.response.status === 401) {
         try {

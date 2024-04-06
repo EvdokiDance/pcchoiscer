@@ -21,7 +21,7 @@ export default class AuthService {
     }
 
     static async refresh(): Promise<AxiosResponse<AuthResponse>> {
-        return axios.get<AuthResponse>(`${process.env.REACT_APP_API_HOST}/refresh`, {withCredentials: true})
+        return $api.get<AuthResponse>(`/refresh`, {withCredentials: true})
     }
 }
 
