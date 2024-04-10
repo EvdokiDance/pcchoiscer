@@ -18,9 +18,10 @@ const app = express();
 
 
 
+
 app.use(cors({
   credentials: true,
-  origin: process.env.CLIENT_URL
+  origin: 'http://localhost:3000'
 }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -189,7 +190,7 @@ app.post('/api/build', authMiddleware, async (req, res) => {
     
  } catch (e) {
   if (e instanceof Prisma.PrismaClientKnownRequestError) {
-    // The .code property can be accessed in a type-safe manner
+    // The .code prodpty can be accessed in a type-safe manner
     if (e.code === 'P2002') {
       console.log(
         'There is a unique constraint violation, a new build cannot be created with this data build'

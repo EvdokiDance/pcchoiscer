@@ -23,7 +23,7 @@ export const PartnerArticle: FC = () => {
 
     const children = partnerArticle && <div className="grid grid-cols-12 gap-4">
     <div className="max-w-[600px] col-span-12 lg:col-span-6 lg:justify-self-center">
-        <img className="w-[100%] h-[100%] max-h-[310px] rounded-xl object-cover"  alt="" src={partnerArticle.img}/>
+        <img className="w-[100%] h-[100%] max-h-[200px] rounded-xl object-cover"  alt="" src={partnerArticle.img}/>
     </div>
     <div className="col-[1/-1] lg:col-[7/-1] flex flex-col justify-start text-base gap-3">
           <p className="text-gray-500 uppercase">Партнеские материл от «{partnerArticle.companyName}»</p>
@@ -35,7 +35,7 @@ export const PartnerArticle: FC = () => {
 
     return (
         <>
-          {partnerArticle ? <section className={`bg-red-900 py-10 mb-3 ${partnerArticle.link && 'hover:hover:bg-red-800 transition ease-in-out delay-75'}`}>
+          {partnerArticle ? <section className={`bg-red-900 py-5 mb-3 ${partnerArticle.link && 'hover:hover:bg-red-800 transition ease-in-out delay-75'}`}>
          <Container>
         {
             partnerArticle.link ? <Link to={partnerArticle.link} target='blank'>{children}</Link> : children

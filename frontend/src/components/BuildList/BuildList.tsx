@@ -91,7 +91,7 @@ function BuildList({
 
   return (
     <>
-      <ul className="grid gap-6 mb-4">
+      <ul className="grid gap-4 mb-4">
       {dataBuild.map((buildItem, index) => (
         <li key={index} className="border-t border-[var(--border-color)] first:border-none">
           <BuildContainer

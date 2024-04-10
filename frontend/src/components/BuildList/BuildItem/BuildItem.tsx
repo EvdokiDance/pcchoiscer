@@ -30,7 +30,7 @@ const BuildItem = ({part, title, category, index, className, handleDeleteItem, .
                     <div className="build-item__features">{features}</div>
                     <div className="build-item__price flex justify-center md:justify-self-end">Цена: {currencyToRub(price)}</div>
                     <div className="build-item__actions flex flex-wrap gap-4 shrink-0 items-center justify-center content-between sm:justify-end">
-                      <LinkTag to={link} className="w-36 shrink-0" target='_blank'><ShoppingCartIcon  sx={{fontSize: 22, marginRight: 1}}/> Купить</LinkTag>
+                      <LinkTag to={link} className="w-36 shrink-0" target='_blank'><ShoppingCartIcon  sx={{fontSize: 22, marginRight: 1}}/>Купить</LinkTag>
                       {handleDeleteItem && <Button id="btn-item" className='w-36 shrink-0' onClick={() => handleDeleteItem(category, index)}>X</Button>}
                     </div>
               

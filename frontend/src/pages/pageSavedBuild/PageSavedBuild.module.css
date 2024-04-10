@@ -1,5 +1,11 @@
 .buildWrapper {
     margin: 20px 0;
+    padding: 10px;
+    background-color: var(--main-color);
+}
+
+.buildHeader {
+    justify-content: center;
 }
 
 .itemList {

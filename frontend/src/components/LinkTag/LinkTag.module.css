@@ -1,9 +1,8 @@
 .primary {
     padding: 2.5px 10px;
     font-size:0.875em;
-    display: inline-flex;
     max-width: 200px;
-    align-items: center;
+    display: flex;
     justify-content: center;
     font-weight: 400;
     color: rgb(255, 255, 255);
