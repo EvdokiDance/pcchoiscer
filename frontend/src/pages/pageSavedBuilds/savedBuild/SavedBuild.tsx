@@ -1,4 +1,4 @@
-import { Props } from './SavedBuildProps'
+import { Props } from './savedBuildProps'
 import styles from './SaveBuild.module.css'
 
 import { currencyToRub } from '../../../helpers/currencyToRub';
