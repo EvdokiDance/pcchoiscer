@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import styles from "./PageSelection.module.css";
 
-import cn from "classnames";
+import cn from 'classnames'
 
 import { getAllPartnerArticles, getData } from "../../api/api";
 
