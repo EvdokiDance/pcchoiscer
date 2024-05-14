@@ -72,7 +72,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form noValidate onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <h1 className="p-2 text-2xl">Вход</h1>
       <Input
         register={{

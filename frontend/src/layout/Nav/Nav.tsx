@@ -7,6 +7,7 @@ import { LinkTag } from "../../components";
 import NavItem from "./NavItem/NavItem";
 import GridViewIcon from '@mui/icons-material/GridView';
 import HardwareIcon from '@mui/icons-material/Hardware';
+import { Logo } from "components/Logo/Logo";
 
 export const Nav = ({ className, ...props }: NavProps): JSX.Element => {
 
@@ -15,7 +16,7 @@ export const Nav = ({ className, ...props }: NavProps): JSX.Element => {
 
   return <div className={cn(styles.nav, className)}>
       <header className={styles.header}>
-        <img src={logo} className={styles.logo} alt="logo" width={50} height={50}/>
+        <Logo className={styles.logo}/>
         <h1 className={styles.title}>Pc Picker</h1>
       </header>
       <nav className={styles.navContainer}>

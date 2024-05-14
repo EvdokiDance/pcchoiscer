@@ -4,9 +4,7 @@
     background-color: var(--main-color);
 }
 
-.buildHeader {
-    justify-content: center;
-}
+
 
 .itemList {
     display: grid;
